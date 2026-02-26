@@ -149,10 +149,26 @@
       cursor: pointer;
       transition: background 0.2s;
       box-shadow: 0 8px 14px -6px #1a2b4a;
+      margin-top: 1rem;
     }
 
     .btn-dark:hover {
       background: #0f1a30;
+    }
+
+    .btn-small {
+      background: #e0e9f5;
+      color: #1e2b3c;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-small:hover {
+      background: #cbdaea;
     }
 
     .section {
@@ -210,6 +226,27 @@
       border: 1px solid #dbe2ed;
     }
 
+    .song-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .song-item {
+      background: #f1f6fd;
+      border-radius: 20px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .song-item i {
+      color: #7aa5c2;
+      font-size: 1.5rem;
+    }
+
     .track-card {
       background: #f1f6fd;
       border-radius: 28px;
@@ -221,13 +258,20 @@
       font-size: 1.8rem;
       font-weight: 600;
       color: #1e2b3c;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .track-artist {
       color: #5f7184;
       margin-bottom: 1.5rem;
       font-style: italic;
+    }
+
+    .player-container {
+      margin: 1.5rem 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .rating-group {
@@ -333,6 +377,21 @@
       color: #3f5568;
     }
 
+    .spotify-note {
+      background: #1DB954;
+      color: white;
+      padding: 0.8rem;
+      border-radius: 40px;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .spotify-note i {
+      color: white;
+      margin-right: 0.5rem;
+    }
+
     @media (max-width: 700px) {
       .navbar {
         flex-direction: column;
@@ -374,12 +433,12 @@
     <div class="card" onclick="location.href='#finder'">
       <i class="fas fa-sliders-h"></i>
       <h3>Mood & Activity Matcher</h3>
-      <p>Find the perfect genre for your mood and activity.</p>
+      <p>Find the perfect genre for your mood and activity with real song recommendations.</p>
     </div>
     <div class="card" onclick="location.href='#experiment'">
       <i class="fas fa-flask"></i>
       <h3>Music Experiment</h3>
-      <p>Test how different tracks change your feelings with real songs.</p>
+      <p>Listen and rate real songs to see how music changes your feelings.</p>
     </div>
     <div class="card" onclick="location.href='#culture'">
       <i class="fas fa-globe-americas"></i>
@@ -388,7 +447,7 @@
     </div>
   </div>
 
-  <!-- ABOUT MUSIC SECTION - ОБНОВЛЕНО -->
+  <!-- ABOUT MUSIC SECTION -->
   <section id="about" class="section">
     <h2><i class="fas fa-star" style="color:#7aa5c2; margin-right:10px;"></i> Power of Music</h2>
     <p style="font-size:1.2rem; margin-bottom:2rem;">Learn how music affects your brain, emotions, and daily life based on scientific research.</p>
@@ -421,10 +480,10 @@
     </div>
   </section>
 
-  <!-- MUSIC FINDER SECTION - ОБНОВЛЕНО -->
+  <!-- MUSIC FINDER SECTION - С РЕАЛЬНЫМИ ПЕСНЯМИ -->
   <section id="finder" class="section">
     <h2><i class="fas fa-magic" style="color:#7aa5c2; margin-right:10px;"></i> Mood & Activity Matcher</h2>
-    <p class="subtitle" style="margin-top:-0.5rem;">Choose your mood and activity – get personalized music genre suggestions.</p>
+    <p class="subtitle" style="margin-top:-0.5rem;">Choose your mood and activity – get personalized music and song recommendations.</p>
 
     <div class="selector-panel">
       <div class="selector-group">
@@ -453,25 +512,34 @@
           <option value="meditating">Meditating</option>
         </select>
       </div>
-      <button class="btn-dark" id="suggestBtn"><i class="fas fa-search"></i> Suggest Genres</button>
+      <button class="btn-dark" id="suggestBtn"><i class="fas fa-search"></i> Suggest Music</button>
     </div>
 
     <div id="suggestionBox" class="genre-suggest">
       <i class="fas fa-headphones" style="margin-right:10px;"></i>
-      <span id="genreResult">Select mood and activity to see suggestions</span>
+      <span id="genreResult">Select mood and activity to see recommendations</span>
+    </div>
+
+    <div id="songRecommendations" class="song-list">
+      <!-- Сюда будут добавляться реальные песни через JavaScript -->
     </div>
 
     <p style="margin-top:1.5rem; color:#4a5e71;"><i class="fas fa-lightbulb"></i> Based on research by Wang (2023) about how different music genres affect cognitive performance and emotions.</p>
   </section>
 
-  <!-- MUSIC EXPERIMENT SECTION - ОБНОВЛЕНО -->
+  <!-- MUSIC EXPERIMENT SECTION - СО ВСТРОЕННЫМ ПЛЕЕРОМ -->
   <section id="experiment" class="section">
     <h2><i class="fas fa-flask" style="color:#7aa5c2;"></i> Music Experiment</h2>
-    <p>Test how different music affects your mood. Listen to each track and rate your experience.</p>
+    <p>Listen to real songs directly on the website and rate how they make you feel.</p>
 
     <div class="track-card" id="experimentTrackCard">
-      <div class="track-name" id="currentTrackDisplay">🎵 "Here Comes The Sun" - The Beatles</div>
+      <div class="track-name" id="currentTrackDisplay">Here Comes The Sun</div>
       <div class="track-artist" id="currentArtistDisplay">The Beatles · 1969 · Pop/Rock</div>
+      
+      <!-- YouTube плеер -->
+      <div class="player-container" id="playerContainer">
+        <iframe id="youtubePlayer" width="100%" height="200" src="https://www.youtube.com/embed/xUNqsfFUwhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
 
       <div class="rating-group">
         <p>How does this music make you feel? (1 = very bad, 5 = very good)</p>
@@ -496,12 +564,12 @@
       <button class="btn-dark" id="nextTrackBtn"><i class="fas fa-forward"></i> Next Track</button>
 
       <div id="experimentFeedback" class="experiment-message">
-        ⚡ Rate the track and go to the next one. This experiment helps you understand how music affects your emotions. Inspired by the PANAS mood scale (Deshmukh and Gupta, 2022).
+        ⚡ Listen to the song, rate your mood (1-5), and say if you liked it. Inspired by the PANAS mood scale (Deshmukh and Gupta, 2022).
       </div>
     </div>
   </section>
 
-  <!-- MUSIC & CULTURE SECTION - ОБНОВЛЕНО -->
+  <!-- MUSIC & CULTURE SECTION -->
   <section id="culture" class="section">
     <h2><i class="fas fa-globe" style="color:#5f4b8b;"></i> Music in Culture and Life</h2>
     <p class="subtitle">Discover how music connects people across cultures and enhances everyday experiences.</p>
@@ -521,19 +589,19 @@
       <div class="culture-card">
         <h4><i class="fas fa-film"></i> Music in Life</h4>
         <ul class="culture-list">
-          <li><i class="fas fa-film"></i> <strong>Movies:</strong> Film scores set the emotional tone. John Williams' scores for Star Wars, Harry Potter, and Jurassic Park use music to create excitement, fear, or joy. Horror movies use dissonant sounds to create tension.</li>
-          <li><i class="fas fa-gamepad"></i> <strong>Video Games:</strong> Game soundtracks enhance immersion. The Legend of Zelda, Minecraft, and Final Fantasy have iconic music that players remember for years. Music adapts to gameplay intensity.</li>
+          <li><i class="fas fa-film"></i> <strong>Movies:</strong> Film scores set the emotional tone. John Williams' scores for Star Wars, Harry Potter, and Jurassic Park use music to create excitement, fear, or joy.</li>
+          <li><i class="fas fa-gamepad"></i> <strong>Video Games:</strong> Game soundtracks enhance immersion. The Legend of Zelda, Minecraft, and Final Fantasy have iconic music that players remember for years.</li>
           <li><i class="fas fa-mask"></i> <strong>Theater:</strong> Musicals tell stories through song. Hamilton, The Phantom of the Opera, and Les Misérables use music to express emotions that dialogue cannot convey.</li>
-          <li><i class="fas fa-medal"></i> <strong>Sports:</strong> Pump-up anthems energize athletes and crowds. "We Will Rock You" by Queen, "Eye of the Tiger" by Survivor, and stadium chants unite fans and motivate players.</li>
-          <li><i class="fas fa-microphone-alt"></i> <strong>Concerts:</strong> Live music creates shared emotional experiences. Thousands of people singing together releases oxytocin, creating feelings of connection and belonging.</li>
-          <li><i class="fas fa-heartbeat"></i> <strong>Therapy:</strong> Music therapy treats depression, anxiety, PTSD, and autism. It helps patients express emotions and reduces stress in clinical settings (Sazandrishvili, 2024).</li>
+          <li><i class="fas fa-medal"></i> <strong>Sports:</strong> Pump-up anthems energize athletes and crowds. "We Will Rock You" by Queen, "Eye of the Tiger" by Survivor unite fans.</li>
+          <li><i class="fas fa-microphone-alt"></i> <strong>Concerts:</strong> Live music creates shared emotional experiences. Thousands of people singing together releases oxytocin, creating feelings of connection.</li>
+          <li><i class="fas fa-heartbeat"></i> <strong>Therapy:</strong> Music therapy treats depression, anxiety, PTSD, and autism. It helps patients express emotions and reduces stress (Sazandrishvili, 2024).</li>
         </ul>
       </div>
     </div>
     
     <div style="margin-top:2rem; background:#f1f6fd; border-radius:28px; padding:1.5rem;">
       <h4><i class="fas fa-quote-right"></i> Why Music Matters</h4>
-      <p>Music is a universal language that transcends borders. It helps us express feelings when words are not enough, connects us to our cultural heritage, and brings people together in shared emotional experiences. Research shows that music alters brain chemistry, improves mental health, and enhances cognitive performance (Piccardi and Palmiero, 2024). Whether you are listening alone or with thousands of others, music has the power to change how you feel and how you see the world.</p>
+      <p>Music is a universal language that transcends borders. It helps us express feelings when words are not enough, connects us to our cultural heritage, and brings people together in shared emotional experiences. Research shows that music alters brain chemistry, improves mental health, and enhances cognitive performance (Piccardi and Palmiero, 2024).</p>
     </div>
   </section>
 
@@ -545,129 +613,222 @@
 
 <script>
   (function() {
-    // MUSIC FINDER - обновленный с новыми эмоциями и активностями
+    // MUSIC FINDER - с реальными песнями
     const moodSelect = document.getElementById('moodSelect');
     const activitySelect = document.getElementById('activitySelect');
     const suggestBtn = document.getElementById('suggestBtn');
     const genreResult = document.getElementById('genreResult');
+    const songContainer = document.getElementById('songRecommendations');
 
-    const suggestions = {
-      // Happy
-      'happy+focusing': ['Upbeat classical (Mozart, Vivaldi)', 'Video game soundtracks', 'Positive electronic'],
-      'happy+studying': ['Happy classical', 'Indie pop', 'Motivational soundtracks'],
-      'happy+relaxing': ['Sunny reggae', 'Bossa nova', 'Happy acoustic', 'Beach music'],
-      'happy+sleeping': ['Soft lullabies', 'Peaceful piano', 'Gentle nature sounds'],
-      'happy+walking': ['Upbeat pop', 'Funk', 'Ska', 'Happy rock'],
-      'happy+exercising': ['Dance pop', 'High-energy electronic', 'Motivational rock'],
-      'happy+working': ['Upbeat instrumental', 'Positive lo-fi', 'Happy background music'],
-      'happy+meditating': ['Joyful ambient', 'Happy mantra music', 'Bright instrumental'],
-      
-      // Sad
-      'sad+focusing': ['Melancholic classical', 'Solo piano', 'Ambient', 'Minimalist music'],
-      'sad+studying': ['Solo piano', 'Melancholic indie', 'String quartets', 'Sad instrumental'],
-      'sad+relaxing': ['Ambient', 'Sad core', 'Minimal piano', 'Elegiac music'],
-      'sad+sleeping': ['Dreamy ambient', 'Soft cello', 'Gentle sad lullabies'],
-      'sad+walking': ['Mellow rock', 'Singer-songwriter (Bon Iver)', 'Blues', 'Folk'],
-      'sad+exercising': ['Emo rock', 'Power ballads', 'Melancholic rock'],
-      'sad+working': ['Quiet instrumental', 'Sad jazz', 'Melancholic background'],
-      'sad+meditating': ['Deep ambient', 'Sad meditation music', 'Contemplative tones'],
-      
-      // Angry
-      'angry+focusing': ['Heavy metal', 'Hard rock', 'Industrial', 'Aggressive electronic'],
-      'angry+studying': ['Intense classical', 'Metal', 'Hard rock instrumentals'],
-      'angry+relaxing': ['Calming metal', 'Post-rock', 'Progressive rock'],
-      'angry+sleeping': ['Not recommended - try calming music instead'],
-      'angry+walking': ['Hard rock', 'Punk', 'Alternative metal'],
-      'angry+exercising': ['Heavy metal', 'Hardcore', 'Nu-metal', 'Aggressive rock'],
-      'angry+working': ['Industrial', 'Hard rock instrumentals', 'Intense electronic'],
-      'angry+meditating': ['Try calming music first to reduce anger'],
-      
-      // Fearful
-      'fearful+focusing': ['Calming classical', 'Ambient', 'Nature sounds', 'Comforting music'],
-      'fearful+studying': ['Gentle piano', 'Soft ambient', 'Calming instrumentals'],
-      'fearful+relaxing': ['Peaceful ambient', 'Healing music', 'Comforting sounds'],
-      'fearful+sleeping': ['Sleep sounds', 'Gentle lullabies', 'Calming ocean waves'],
-      'fearful+walking': ['Uplifting music', 'Comforting pop', 'Gentle rock'],
-      'fearful+exercising': ['Empowering rock', 'Motivational music', 'Confidence-building tracks'],
-      'fearful+working': ['Calming background', 'Gentle instrumentals', 'Comforting ambient'],
-      'fearful+meditating': ['Healing meditation', 'Comforting ambient', 'Peaceful tones'],
-      
-      // Surprised
-      'surprised+focusing': ['Experimental', 'Progressive rock', 'Avant-garde jazz'],
-      'surprised+studying': ['Unexpected mixes', 'Experimental electronic', 'Fusion genres'],
-      'surprised+relaxing': ['World music fusion', 'Experimental ambient'],
-      'surprised+sleeping': ['Ambient', 'Dreamy experimental'],
-      'surprised+walking': ['Unexpected playlists', 'Genre mixing', 'Surprising covers'],
-      'surprised+exercising': ['Unexpected rock', 'Surprising electronic', 'Genre blends'],
-      'surprised+working': ['Experimental background', 'Progressive instrumentals'],
-      'surprised+meditating': ['Experimental meditation', 'New age fusion'],
-      
-      // Disgusted
-      'disgusted+focusing': ['Clean classical', 'Pure instrumentals', 'Simple melodies'],
-      'disgusted+studying': ['Minimalist music', 'Pure tones', 'Simple piano'],
-      'disgusted+relaxing': ['Nature sounds', 'Pure ambient', 'Simple healing music'],
-      'disgusted+sleeping': ['Pure sleep sounds', 'Simple lullabies', 'Clean ambient'],
-      'disgusted+walking': ['Simple pop', 'Clean rock', 'Pure acoustic'],
-      'disgusted+exercising': ['Clean electronic', 'Simple upbeat music'],
-      'disgusted+working': ['Minimalist background', 'Pure instrumentals'],
-      'disgusted+meditating': ['Pure meditation', 'Simple healing tones'],
-      
-      // Calm
-      'calm+focusing': ['Lo-fi', 'Classical piano', 'Ambient', 'Nature sounds'],
-      'calm+studying': ['Lo-fi', 'Classical', 'Ambient', 'Piano instrumentals'],
-      'calm+relaxing': ['Nature sounds', 'Meditation music', 'Spa piano', 'Calming ambient'],
-      'calm+sleeping': ['Sleep music', 'Gentle ambient', 'Soft piano', 'Ocean waves'],
-      'calm+walking': ['Smooth jazz', 'Acoustic folk', 'Downtempo', 'Chillout'],
-      'calm+exercising': ['Soft rock', 'Chillstep', 'Mid-tempo electronica'],
-      'calm+working': ['Calm background', 'Smooth jazz', 'Gentle instrumentals'],
-      'calm+meditating': ['Meditation music', 'Healing ambient', 'Tibetan bowls', 'Nature'],
-      
-      // Energetic
-      'energetic+focusing': ['High-focus electronic', 'Epic orchestral', 'Video game soundtracks'],
-      'energetic+studying': ['Epic music', 'Motivational soundtracks', 'Focus electronic'],
-      'energetic+relaxing': ['World music', 'Latin rhythms', 'Upbeat world fusion'],
-      'energetic+sleeping': ['Not recommended - try calm music for sleep'],
-      'energetic+walking': ['Power pop', 'Marching band', 'Upbeat rock', 'Dance'],
-      'energetic+exercising': ['Drum & bass', 'Hard rock', 'Heavy metal', 'EDM', 'Hip-hop'],
-      'energetic+working': ['Motivational electronic', 'Epic background', 'Upbeat instrumentals'],
-      'energetic+meditating': ['Active meditation', 'Upbeat mantra', 'Energetic spiritual'],
+    // База данных реальных песен для разных комбинаций
+    const songDatabase = {
+      'happy+focusing': {
+        genres: ['Upbeat classical', 'Video game soundtracks', 'Positive electronic'],
+        songs: [
+          { name: 'Eine Kleine Nachtmusik', artist: 'Mozart', icon: 'fa-music' },
+          { name: 'Super Mario Bros Theme', artist: 'Koji Kondo', icon: 'fa-gamepad' },
+          { name: 'Canon in D', artist: 'Pachelbel', icon: 'fa-music' }
+        ]
+      },
+      'happy+studying': {
+        genres: ['Happy classical', 'Indie pop', 'Motivational soundtracks'],
+        songs: [
+          { name: 'Four Seasons - Spring', artist: 'Vivaldi', icon: 'fa-music' },
+          { name: 'Dog Days Are Over', artist: 'Florence + The Machine', icon: 'fa-headphones' },
+          { name: 'Happy', artist: 'Pharrell Williams', icon: 'fa-smile' }
+        ]
+      },
+      'happy+relaxing': {
+        genres: ['Sunny reggae', 'Bossa nova', 'Happy acoustic'],
+        songs: [
+          { name: 'Three Little Birds', artist: 'Bob Marley', icon: 'fa-sun' },
+          { name: 'The Girl from Ipanema', artist: 'Stan Getz', icon: 'fa-tree' },
+          { name: 'Here Comes The Sun', artist: 'The Beatles', icon: 'fa-sun' }
+        ]
+      },
+      'happy+sleeping': {
+        genres: ['Soft lullabies', 'Peaceful piano', 'Gentle nature sounds'],
+        songs: [
+          { name: 'Gymnopédie No.1', artist: 'Erik Satie', icon: 'fa-moon' },
+          { name: 'Clair de Lune', artist: 'Claude Debussy', icon: 'fa-moon' },
+          { name: 'Weightless', artist: 'Marconi Union', icon: 'fa-cloud' }
+        ]
+      },
+      'calm+studying': {
+        genres: ['Lo-fi', 'Classical piano', 'Ambient'],
+        songs: [
+          { name: 'Nocturne Op.9 No.2', artist: 'Chopin', icon: 'fa-music' },
+          { name: 'lofi beats', artist: 'Lofi Girl', icon: 'fa-headphones' },
+          { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', icon: 'fa-water' }
+        ]
+      },
+      'calm+relaxing': {
+        genres: ['Nature sounds', 'Meditation music', 'Spa piano'],
+        songs: [
+          { name: 'Ocean Waves', artist: 'Nature Sounds', icon: 'fa-water' },
+          { name: 'Weightless', artist: 'Marconi Union', icon: 'fa-feather' },
+          { name: 'Gymnopédie No.1', artist: 'Erik Satie', icon: 'fa-music' }
+        ]
+      },
+      'calm+sleeping': {
+        genres: ['Sleep music', 'Gentle ambient', 'Soft piano'],
+        songs: [
+          { name: 'Dream 3', artist: 'Max Richter', icon: 'fa-moon' },
+          { name: 'Clair de Lune', artist: 'Debussy', icon: 'fa-moon' },
+          { name: 'Sleep', artist: 'Eric Whitacre', icon: 'fa-bed' }
+        ]
+      },
+      'energetic+exercising': {
+        genres: ['Drum & bass', 'Hard rock', 'Heavy metal', 'EDM'],
+        songs: [
+          { name: 'Eye of the Tiger', artist: 'Survivor', icon: 'fa-dumbbell' },
+          { name: 'Lose Yourself', artist: 'Eminem', icon: 'fa-microphone' },
+          { name: 'We Will Rock You', artist: 'Queen', icon: 'fa-guitar' },
+          { name: 'Thunderstruck', artist: 'AC/DC', icon: 'fa-bolt' }
+        ]
+      },
+      'energetic+walking': {
+        genres: ['Power pop', 'Upbeat rock', 'Dance'],
+        songs: [
+          { name: 'Walking on Sunshine', artist: 'Katrina & The Waves', icon: 'fa-sun' },
+          { name: 'Uptown Funk', artist: 'Bruno Mars', icon: 'fa-dance' },
+          { name: 'Happy', artist: 'Pharrell Williams', icon: 'fa-smile' }
+        ]
+      },
+      'sad+relaxing': {
+        genres: ['Ambient', 'Sad core', 'Minimal piano'],
+        songs: [
+          { name: 'Hurt', artist: 'Johnny Cash', icon: 'fa-heart' },
+          { name: 'Someone Like You', artist: 'Adele', icon: 'fa-heart' },
+          { name: 'The Night We Met', artist: 'Lord Huron', icon: 'fa-star' }
+        ]
+      },
+      'sad+studying': {
+        genres: ['Solo piano', 'Melancholic indie', 'String quartets'],
+        songs: [
+          { name: 'Moonlight Sonata', artist: 'Beethoven', icon: 'fa-music' },
+          { name: 'Skinny Love', artist: 'Bon Iver', icon: 'fa-microphone' },
+          { name: 'Holocene', artist: 'Bon Iver', icon: 'fa-tree' }
+        ]
+      },
+      'angry+exercising': {
+        genres: ['Heavy metal', 'Hardcore', 'Nu-metal'],
+        songs: [
+          { name: 'Killing in the Name', artist: 'Rage Against The Machine', icon: 'fa-guitar' },
+          { name: 'Break Stuff', artist: 'Limp Bizkit', icon: 'fa-bolt' },
+          { name: 'Enter Sandman', artist: 'Metallica', icon: 'fa-skull' }
+        ]
+      },
+      'fearful+relaxing': {
+        genres: ['Calming classical', 'Ambient', 'Nature sounds'],
+        songs: [
+          { name: 'Gymnopédie No.1', artist: 'Erik Satie', icon: 'fa-feather' },
+          { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', icon: 'fa-water' },
+          { name: 'Ocean Waves', artist: 'Nature Sounds', icon: 'fa-water' }
+        ]
+      }
     };
 
-    function getSuggestion(mood, activity) {
+    function displaySongRecommendations(mood, activity) {
       const key = mood + '+' + activity;
-      return suggestions[key] || ['Try different combination', 'Popular genres for this mood', 'Explore our recommendations'];
+      const data = songDatabase[key];
+      
+      if (data) {
+        // Показываем жанры
+        genreResult.innerHTML = `<i class="fas fa-music"></i> Recommended genres: ${data.genres.join(' · ')}`;
+        
+        // Показываем реальные песни
+        let songsHTML = '';
+        data.songs.forEach(song => {
+          songsHTML += `
+            <div class="song-item">
+              <i class="fas ${song.icon}"></i>
+              <div>
+                <strong>${song.name}</strong><br>
+                <small>${song.artist}</small>
+              </div>
+            </div>
+          `;
+        });
+        songContainer.innerHTML = songsHTML;
+      } else {
+        // Если нет точного совпадения, показываем общие рекомендации
+        const defaultGenres = ['Pop', 'Rock', 'Classical', 'Electronic'];
+        genreResult.innerHTML = `<i class="fas fa-music"></i> Try these popular genres: ${defaultGenres.join(' · ')}`;
+        
+        // Показываем популярные песни
+        songContainer.innerHTML = `
+          <div class="song-item"><i class="fas fa-music"></i> <div><strong>Bohemian Rhapsody</strong><br><small>Queen</small></div></div>
+          <div class="song-item"><i class="fas fa-music"></i> <div><strong>Imagine</strong><br><small>John Lennon</small></div></div>
+          <div class="song-item"><i class="fas fa-music"></i> <div><strong>Billie Jean</strong><br><small>Michael Jackson</small></div></div>
+        `;
+      }
     }
 
     suggestBtn.addEventListener('click', () => {
       const mood = moodSelect.value;
       const activity = activitySelect.value;
-      const genres = getSuggestion(mood, activity);
-      genreResult.innerHTML = `<i class="fas fa-music"></i> ${genres.join(' · ')}`;
+      displaySongRecommendations(mood, activity);
     });
 
-    // MUSIC EXPERIMENT - с реальными песнями
+    // MUSIC EXPERIMENT - с YouTube плеером
     const tracks = [
-      { name: '🎵 "Here Comes The Sun"', artist: 'The Beatles · 1969 · Pop/Rock' },
-      { name: '🎵 "Clair de Lune"', artist: 'Claude Debussy · 1905 · Classical/Piano' },
-      { name: '🎵 "Bohemian Rhapsody"', artist: 'Queen · 1975 · Rock/Progressive' },
-      { name: '🎵 "Weightless"', artist: 'Marconi Union · 2011 · Ambient/Relaxation' },
-      { name: '🎵 "Lose Yourself"', artist: 'Eminem · 2002 · Hip-hop/Motivational' },
-      { name: '🎵 "Nocturne Op.9 No.2"', artist: 'Frédéric Chopin · 1832 · Classical/Romantic' },
-      { name: '🎵 "Imagine"', artist: 'John Lennon · 1971 · Soft Rock' },
-      { name: '🎵 "Thriller"', artist: 'Michael Jackson · 1982 · Pop/Funk' }
+      { 
+        name: 'Here Comes The Sun', 
+        artist: 'The Beatles · 1969 · Pop/Rock',
+        videoId: 'xUNqsfFUwhY'
+      },
+      { 
+        name: 'Clair de Lune', 
+        artist: 'Claude Debussy · 1905 · Classical/Piano',
+        videoId: 'CvFH_6DNnYg'
+      },
+      { 
+        name: 'Bohemian Rhapsody', 
+        artist: 'Queen · 1975 · Rock/Progressive',
+        videoId: 'fJ9rUzIMcZQ'
+      },
+      { 
+        name: 'Weightless', 
+        artist: 'Marconi Union · 2011 · Ambient/Relaxation',
+        videoId: 'UfcAVejslrU'
+      },
+      { 
+        name: 'Lose Yourself', 
+        artist: 'Eminem · 2002 · Hip-hop/Motivational',
+        videoId: '_Yhyp-_hX2s'
+      },
+      { 
+        name: 'Nocturne Op.9 No.2', 
+        artist: 'Frédéric Chopin · 1832 · Classical/Romantic',
+        videoId: '9E6b3swbnWg'
+      },
+      { 
+        name: 'Imagine', 
+        artist: 'John Lennon · 1971 · Soft Rock',
+        videoId: 'YkgkThdzX-8'
+      },
+      { 
+        name: 'Thriller', 
+        artist: 'Michael Jackson · 1982 · Pop/Funk',
+        videoId: 'sOnqjkJTMaA'
+      }
     ];
 
     let trackIndex = 0;
     const trackDisplay = document.getElementById('currentTrackDisplay');
     const artistDisplay = document.getElementById('currentArtistDisplay');
+    const youtubePlayer = document.getElementById('youtubePlayer');
     const moodRadios = document.querySelectorAll('input[name="moodRating"]');
     const likeRadios = document.querySelectorAll('input[name="likeTrack"]');
     const feedbackDiv = document.getElementById('experimentFeedback');
     const nextBtn = document.getElementById('nextTrackBtn');
 
     function updateTrackDisplay() {
-      trackDisplay.textContent = `${tracks[trackIndex].name}`;
+      trackDisplay.textContent = tracks[trackIndex].name;
       artistDisplay.textContent = tracks[trackIndex].artist;
+      // Обновляем YouTube видео
+      youtubePlayer.src = `https://www.youtube.com/embed/${tracks[trackIndex].videoId}?autoplay=0`;
     }
 
     function clearRatings() {
@@ -683,9 +844,9 @@
         msg += 'You rated ';
         if (selectedMood) msg += `mood ${selectedMood.value}/5 `;
         if (selectedLike) msg += `and said "${selectedLike.value}" `;
-        msg += '– thank you! This helps understand how music affects your emotions.';
+        msg += '– thank you!';
       } else {
-        msg = '👆 Select a mood rating and like/dislike, then go to next track.';
+        msg = '👆 Select a mood rating (1-5) and whether you liked the song.';
       }
       feedbackDiv.innerHTML = msg;
     }
@@ -697,7 +858,7 @@
       trackIndex = (trackIndex + 1) % tracks.length;
       updateTrackDisplay();
       clearRatings();
-      feedbackDiv.innerHTML = '⏩ New track! Rate how it makes you feel.';
+      feedbackDiv.innerHTML = '⏩ New song! Listen and rate how it makes you feel.';
     });
 
     updateTrackDisplay();
