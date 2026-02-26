@@ -240,6 +240,12 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .song-item:hover {
+      transform: scale(1.02);
+      background: #e5eef9;
     }
 
     .song-item i {
@@ -267,11 +273,111 @@
       font-style: italic;
     }
 
+    /* MP3 плеер стили */
     .player-container {
       margin: 1.5rem 0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: linear-gradient(145deg, #1a2b4a, #2a3b5a);
+      border-radius: 60px;
+      padding: 1rem 1.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .player-button {
+      background: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #1a2b4a;
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    .player-button:hover {
+      transform: scale(1.1);
+    }
+
+    .player-button i {
+      color: #1a2b4a;
+    }
+
+    .player-info {
+      flex: 1;
+    }
+
+    .player-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .player-artist {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .player-progress {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 5px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #7aa5c2;
+      border-radius: 10px;
+      transition: width 0.1s;
+    }
+
+    .progress-time {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .volume-control i {
+      color: white;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .volume-slider {
+      width: 60px;
+      height: 5px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .volume-fill {
+      width: 70%;
+      height: 100%;
+      background: white;
+      border-radius: 10px;
     }
 
     .rating-group {
@@ -296,6 +402,13 @@
       border-radius: 40px;
       border: 1px solid #ccdaea;
       cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .scale label:hover {
+      background: #7aa5c2;
+      color: white;
+      border-color: #7aa5c2;
     }
 
     .like-group {
@@ -309,6 +422,13 @@
       align-items: center;
       gap: 0.4rem;
       cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      transition: all 0.2s;
+    }
+
+    .like-group label:hover {
+      background: #e0e9f5;
     }
 
     .experiment-message {
@@ -377,8 +497,8 @@
       color: #3f5568;
     }
 
-    .spotify-note {
-      background: #1DB954;
+    .mp3-note {
+      background: #1a2b4a;
       color: white;
       padding: 0.8rem;
       border-radius: 40px;
@@ -387,8 +507,8 @@
       font-size: 0.9rem;
     }
 
-    .spotify-note i {
-      color: white;
+    .mp3-note i {
+      color: #7aa5c2;
       margin-right: 0.5rem;
     }
 
@@ -398,6 +518,9 @@
       }
       h1 { font-size: 2.2rem; }
       .culture-grid { grid-template-columns: 1fr; }
+      .player-container {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
@@ -480,7 +603,7 @@
     </div>
   </section>
 
-  <!-- MUSIC FINDER SECTION - С РЕАЛЬНЫМИ ПЕСНЯМИ -->
+  <!-- MUSIC FINDER SECTION -->
   <section id="finder" class="section">
     <h2><i class="fas fa-magic" style="color:#7aa5c2; margin-right:10px;"></i> Mood & Activity Matcher</h2>
     <p class="subtitle" style="margin-top:-0.5rem;">Choose your mood and activity – get personalized music and song recommendations.</p>
@@ -521,25 +644,53 @@
     </div>
 
     <div id="songRecommendations" class="song-list">
-      <!-- Сюда будут добавляться реальные песни через JavaScript -->
+      <!-- Song recommendations will appear here -->
     </div>
 
     <p style="margin-top:1.5rem; color:#4a5e71;"><i class="fas fa-lightbulb"></i> Based on research by Wang (2023) about how different music genres affect cognitive performance and emotions.</p>
   </section>
 
-  <!-- MUSIC EXPERIMENT SECTION - СО ВСТРОЕННЫМ ПЛЕЕРОМ -->
+  <!-- MUSIC EXPERIMENT SECTION - С MP3 ПЛЕЕРОМ -->
   <section id="experiment" class="section">
     <h2><i class="fas fa-flask" style="color:#7aa5c2;"></i> Music Experiment</h2>
-    <p>Listen to real songs directly on the website and rate how they make you feel.</p>
+    <p>Listen to real songs directly on the website with our MP3 player and rate how they make you feel.</p>
 
     <div class="track-card" id="experimentTrackCard">
       <div class="track-name" id="currentTrackDisplay">Here Comes The Sun</div>
       <div class="track-artist" id="currentArtistDisplay">The Beatles · 1969 · Pop/Rock</div>
       
-      <!-- YouTube плеер -->
+      <!-- MP3 плеер -->
       <div class="player-container" id="playerContainer">
-        <iframe id="youtubePlayer" width="100%" height="200" src="https://www.youtube.com/embed/xUNqsfFUwhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button class="player-button" id="playPauseBtn">
+          <i class="fas fa-play" id="playPauseIcon"></i>
+        </button>
+        
+        <div class="player-info">
+          <div class="player-title" id="playerTrackTitle">Here Comes The Sun</div>
+          <div class="player-artist" id="playerTrackArtist">The Beatles</div>
+          
+          <div class="player-progress">
+            <span class="progress-time" id="currentTime">0:00</span>
+            <div class="progress-bar" id="progressBar">
+              <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <span class="progress-time" id="duration">0:00</span>
+          </div>
+        </div>
+        
+        <div class="volume-control">
+          <i class="fas fa-volume-up" id="volumeIcon"></i>
+          <div class="volume-slider" id="volumeSlider">
+            <div class="volume-fill" id="volumeFill" style="width: 70%"></div>
+          </div>
+        </div>
       </div>
+
+      <!-- Скрытые аудио элементы -->
+      <audio id="audioPlayer" preload="auto">
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
 
       <div class="rating-group">
         <p>How does this music make you feel? (1 = very bad, 5 = very good)</p>
@@ -564,7 +715,11 @@
       <button class="btn-dark" id="nextTrackBtn"><i class="fas fa-forward"></i> Next Track</button>
 
       <div id="experimentFeedback" class="experiment-message">
-        ⚡ Listen to the song, rate your mood (1-5), and say if you liked it. Inspired by the PANAS mood scale (Deshmukh and Gupta, 2022).
+        ⚡ Listen to the song using the MP3 player, rate your mood (1-5), and say if you liked it. Inspired by the PANAS mood scale (Deshmukh and Gupta, 2022).
+      </div>
+      
+      <div class="mp3-note">
+        <i class="fas fa-music"></i> MP3 files are stored directly in the project and play without internet connection
       </div>
     </div>
   </section>
@@ -718,14 +873,6 @@
           { name: 'Break Stuff', artist: 'Limp Bizkit', icon: 'fa-bolt' },
           { name: 'Enter Sandman', artist: 'Metallica', icon: 'fa-skull' }
         ]
-      },
-      'fearful+relaxing': {
-        genres: ['Calming classical', 'Ambient', 'Nature sounds'],
-        songs: [
-          { name: 'Gymnopédie No.1', artist: 'Erik Satie', icon: 'fa-feather' },
-          { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', icon: 'fa-water' },
-          { name: 'Ocean Waves', artist: 'Nature Sounds', icon: 'fa-water' }
-        ]
       }
     };
 
@@ -734,10 +881,8 @@
       const data = songDatabase[key];
       
       if (data) {
-        // Показываем жанры
         genreResult.innerHTML = `<i class="fas fa-music"></i> Recommended genres: ${data.genres.join(' · ')}`;
         
-        // Показываем реальные песни
         let songsHTML = '';
         data.songs.forEach(song => {
           songsHTML += `
@@ -752,11 +897,9 @@
         });
         songContainer.innerHTML = songsHTML;
       } else {
-        // Если нет точного совпадения, показываем общие рекомендации
         const defaultGenres = ['Pop', 'Rock', 'Classical', 'Electronic'];
         genreResult.innerHTML = `<i class="fas fa-music"></i> Try these popular genres: ${defaultGenres.join(' · ')}`;
         
-        // Показываем популярные песни
         songContainer.innerHTML = `
           <div class="song-item"><i class="fas fa-music"></i> <div><strong>Bohemian Rhapsody</strong><br><small>Queen</small></div></div>
           <div class="song-item"><i class="fas fa-music"></i> <div><strong>Imagine</strong><br><small>John Lennon</small></div></div>
@@ -771,71 +914,129 @@
       displaySongRecommendations(mood, activity);
     });
 
-    // MUSIC EXPERIMENT - с YouTube плеером
+    // MP3 PLAYER - кастомный плеер для эксперимента
     const tracks = [
       { 
         name: 'Here Comes The Sun', 
         artist: 'The Beatles · 1969 · Pop/Rock',
-        videoId: 'xUNqsfFUwhY'
+        artistShort: 'The Beatles',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' // тестовый MP3
       },
       { 
         name: 'Clair de Lune', 
         artist: 'Claude Debussy · 1905 · Classical/Piano',
-        videoId: 'CvFH_6DNnYg'
+        artistShort: 'Claude Debussy',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' // тестовый MP3
       },
       { 
         name: 'Bohemian Rhapsody', 
         artist: 'Queen · 1975 · Rock/Progressive',
-        videoId: 'fJ9rUzIMcZQ'
+        artistShort: 'Queen',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' // тестовый MP3
       },
       { 
         name: 'Weightless', 
         artist: 'Marconi Union · 2011 · Ambient/Relaxation',
-        videoId: 'UfcAVejslrU'
+        artistShort: 'Marconi Union',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' // тестовый MP3
       },
       { 
         name: 'Lose Yourself', 
         artist: 'Eminem · 2002 · Hip-hop/Motivational',
-        videoId: '_Yhyp-_hX2s'
+        artistShort: 'Eminem',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' // тестовый MP3
       },
       { 
         name: 'Nocturne Op.9 No.2', 
         artist: 'Frédéric Chopin · 1832 · Classical/Romantic',
-        videoId: '9E6b3swbnWg'
+        artistShort: 'Chopin',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' // тестовый MP3
       },
       { 
         name: 'Imagine', 
         artist: 'John Lennon · 1971 · Soft Rock',
-        videoId: 'YkgkThdzX-8'
+        artistShort: 'John Lennon',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' // тестовый MP3
       },
       { 
         name: 'Thriller', 
         artist: 'Michael Jackson · 1982 · Pop/Funk',
-        videoId: 'sOnqjkJTMaA'
+        artistShort: 'Michael Jackson',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' // тестовый MP3
       }
     ];
 
     let trackIndex = 0;
     const trackDisplay = document.getElementById('currentTrackDisplay');
     const artistDisplay = document.getElementById('currentArtistDisplay');
-    const youtubePlayer = document.getElementById('youtubePlayer');
+    const playerTrackTitle = document.getElementById('playerTrackTitle');
+    const playerTrackArtist = document.getElementById('playerTrackArtist');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const playPauseIcon = document.getElementById('playPauseIcon');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeSpan = document.getElementById('currentTime');
+    const durationSpan = document.getElementById('duration');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeFill = document.getElementById('volumeFill');
+    const volumeIcon = document.getElementById('volumeIcon');
     const moodRadios = document.querySelectorAll('input[name="moodRating"]');
     const likeRadios = document.querySelectorAll('input[name="likeTrack"]');
     const feedbackDiv = document.getElementById('experimentFeedback');
     const nextBtn = document.getElementById('nextTrackBtn');
 
+    // Функция для форматирования времени (секунды -> MM:SS)
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }
+
+    // Обновление информации о треке
     function updateTrackDisplay() {
       trackDisplay.textContent = tracks[trackIndex].name;
       artistDisplay.textContent = tracks[trackIndex].artist;
-      // Обновляем YouTube видео
-      youtubePlayer.src = `https://www.youtube.com/embed/${tracks[trackIndex].videoId}?autoplay=0`;
+      playerTrackTitle.textContent = tracks[trackIndex].name;
+      playerTrackArtist.textContent = tracks[trackIndex].artistShort;
+      
+      // Обновляем источник MP3
+      audioPlayer.src = tracks[trackIndex].mp3;
+      audioPlayer.load();
+      
+      // Сбрасываем кнопку воспроизведения
+      playPauseIcon.className = 'fas fa-play';
     }
 
+    // Воспроизведение/пауза
+    function togglePlay() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseIcon.className = 'fas fa-pause';
+      } else {
+        audioPlayer.pause();
+        playPauseIcon.className = 'fas fa-play';
+      }
+    }
+
+    // Обновление прогресса
+    function updateProgress() {
+      if (audioPlayer.duration) {
+        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressFill.style.width = progress + '%';
+        currentTimeSpan.textContent = formatTime(audioPlayer.currentTime);
+        durationSpan.textContent = formatTime(audioPlayer.duration);
+      }
+    }
+
+    // Сброс оценок
     function clearRatings() {
       moodRadios.forEach(r => r.checked = false);
       likeRadios.forEach(r => r.checked = false);
     }
 
+    // Показ фидбека
     function showFeedback() {
       const selectedMood = document.querySelector('input[name="moodRating"]:checked');
       const selectedLike = document.querySelector('input[name="likeTrack"]:checked');
@@ -851,16 +1052,66 @@
       feedbackDiv.innerHTML = msg;
     }
 
+    // Обработчики событий плеера
+    playPauseBtn.addEventListener('click', togglePlay);
+
+    audioPlayer.addEventListener('timeupdate', updateProgress);
+
+    audioPlayer.addEventListener('loadedmetadata', () => {
+      durationSpan.textContent = formatTime(audioPlayer.duration);
+    });
+
+    audioPlayer.addEventListener('ended', () => {
+      playPauseIcon.className = 'fas fa-play';
+    });
+
+    // Клик по прогресс-бару
+    progressBar.addEventListener('click', (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const clickRatio = clickX / width;
+      audioPlayer.currentTime = clickRatio * audioPlayer.duration;
+    });
+
+    // Регулятор громкости
+    volumeSlider.addEventListener('click', (e) => {
+      const rect = volumeSlider.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const clickRatio = clickX / width;
+      audioPlayer.volume = clickRatio;
+      volumeFill.style.width = (clickRatio * 100) + '%';
+      
+      // Меняем иконку в зависимости от громкости
+      if (audioPlayer.volume === 0) {
+        volumeIcon.className = 'fas fa-volume-mute';
+      } else if (audioPlayer.volume < 0.5) {
+        volumeIcon.className = 'fas fa-volume-down';
+      } else {
+        volumeIcon.className = 'fas fa-volume-up';
+      }
+    });
+
+    // Обработчики оценок
     moodRadios.forEach(r => r.addEventListener('change', showFeedback));
     likeRadios.forEach(r => r.addEventListener('change', showFeedback));
 
+    // Следующий трек
     nextBtn.addEventListener('click', () => {
       trackIndex = (trackIndex + 1) % tracks.length;
       updateTrackDisplay();
       clearRatings();
       feedbackDiv.innerHTML = '⏩ New song! Listen and rate how it makes you feel.';
+      
+      // Если музыка играла, останавливаем и сбрасываем кнопку
+      if (!audioPlayer.paused) {
+        audioPlayer.pause();
+        playPauseIcon.className = 'fas fa-play';
+      }
     });
 
+    // Инициализация
     updateTrackDisplay();
     clearRatings();
 
