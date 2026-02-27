@@ -269,16 +269,6 @@
       font-size: 0.9rem;
     }
 
-    .youtube-badge {
-      background: #ff0000;
-      color: white;
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      display: inline-block;
-      margin-left: 0.5rem;
-    }
-
     .track-card {
       background: #f1f6fd;
       border-radius: 28px;
@@ -299,11 +289,110 @@
       font-style: italic;
     }
 
-    .youtube-player-container {
+    .player-container {
       margin: 1.5rem 0;
-      border-radius: 16px;
-      overflow: hidden;
+      background: linear-gradient(145deg, #1a2b4a, #2a3b5a);
+      border-radius: 60px;
+      padding: 1rem 1.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .player-button {
+      background: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #1a2b4a;
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    .player-button:hover {
+      transform: scale(1.1);
+    }
+
+    .player-button i {
+      color: #1a2b4a;
+    }
+
+    .player-info {
+      flex: 1;
+    }
+
+    .player-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .player-artist {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .player-progress {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 5px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #7aa5c2;
+      border-radius: 10px;
+      transition: width 0.1s;
+    }
+
+    .progress-time {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .volume-control i {
+      color: white;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .volume-slider {
+      width: 60px;
+      height: 5px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .volume-fill {
+      width: 70%;
+      height: 100%;
+      background: white;
+      border-radius: 10px;
     }
 
     .rating-group {
@@ -457,6 +546,9 @@
       }
       h1 { font-size: 2.2rem; }
       .culture-grid { grid-template-columns: 1fr; }
+      .player-container {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
@@ -492,7 +584,7 @@
     <div class="card" onclick="location.href='#finder'">
       <i class="fas fa-sliders-h"></i>
       <h3>Mood & Activity Matcher</h3>
-      <p>Find music for your mood and activity with real YouTube videos.</p>
+      <p>Find music for your mood and activity.</p>
     </div>
     <div class="card" onclick="location.href='#experiment'">
       <i class="fas fa-flask"></i>
@@ -542,7 +634,7 @@
   <!-- MUSIC FINDER SECTION -->
   <section id="finder" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-magic" style="color:#7aa5c2; margin-right:10px;"></i> Mood & Activity Matcher</h2>
-    <p class="subtitle" style="margin-top:-0.5rem;">Choose your mood and activity – get personalized YouTube music recommendations.</p>
+    <p class="subtitle" style="margin-top:-0.5rem;">Choose your mood and activity – get personalized music recommendations.</p>
 
     <div class="selector-panel">
       <div class="selector-group">
@@ -580,7 +672,7 @@
     </div>
 
     <div id="songRecommendations" class="song-list">
-      <!-- YouTube recommendations will appear here -->
+      <!-- Song recommendations will appear here -->
     </div>
 
     <p style="margin-top:1.5rem; color:#4a5e71;"><i class="fas fa-lightbulb"></i> Based on research by Wang (2023) about how different music genres affect cognitive performance and emotions.</p>
@@ -589,16 +681,41 @@
   <!-- MUSIC EXPERIMENT SECTION -->
   <section id="experiment" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-flask" style="color:#7aa5c2;"></i> Music Experiment</h2>
-    <p>Listen to 10 different songs on YouTube and rate them. After finishing, you'll get a personalized analysis of your musical taste.</p>
+    <p>Listen to 10 different songs and rate them. After finishing, you'll get a personalized analysis of your musical taste.</p>
 
     <div class="track-card" id="experimentTrackCard">
-      <div class="track-name" id="currentTrackDisplay">Here Comes The Sun</div>
-      <div class="track-artist" id="currentArtistDisplay">The Beatles · 1969 · Rock/Pop</div>
+      <div class="track-name" id="currentTrackDisplay">Test Track 1</div>
+      <div class="track-artist" id="currentArtistDisplay">Artist Name</div>
       
-      <!-- YouTube плеер -->
-      <div class="youtube-player-container" id="youtubePlayerContainer">
-        <iframe id="youtubePlayer" width="100%" height="250" src="https://www.youtube.com/embed/xUNqsfFUwhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <!-- MP3 плеер -->
+      <div class="player-container" id="playerContainer">
+        <button class="player-button" id="playPauseBtn">
+          <i class="fas fa-play" id="playPauseIcon"></i>
+        </button>
+        
+        <div class="player-info">
+          <div class="player-title" id="playerTrackTitle">Track Title</div>
+          <div class="player-artist" id="playerTrackArtist">Artist</div>
+          
+          <div class="player-progress">
+            <span class="progress-time" id="currentTime">0:00</span>
+            <div class="progress-bar" id="progressBar">
+              <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <span class="progress-time" id="duration">0:00</span>
+          </div>
+        </div>
+        
+        <div class="volume-control">
+          <i class="fas fa-volume-up" id="volumeIcon"></i>
+          <div class="volume-slider" id="volumeSlider">
+            <div class="volume-fill" id="volumeFill" style="width: 70%"></div>
+          </div>
+        </div>
       </div>
+
+      <!-- Аудио элемент -->
+      <audio id="audioPlayer" preload="auto"></audio>
 
       <div class="rating-group">
         <p>How does this music make you feel? (1 = very bad, 5 = very good)</p>
@@ -623,7 +740,7 @@
       <button class="btn-dark" id="nextTrackBtn"><i class="fas fa-forward"></i> Next Track</button>
 
       <div id="experimentFeedback" class="experiment-message">
-        ⚡ Track 1 of 10. Watch the YouTube video and rate the song to continue.
+        ⚡ Track 1 of 10. Listen and rate the song to continue.
       </div>
     </div>
 
@@ -708,159 +825,169 @@
     const genreResult = document.getElementById('genreResult');
     const songContainer = document.getElementById('songRecommendations');
 
-    // База данных YouTube видео для Music Finder
+    // База данных с MP3 (использую SoundHelix - гарантированно работают)
     const musicDatabase = {
       'happy+focusing': {
-        genres: ['Pop', 'Synth-pop', 'Motivational'],
+        genres: ['Pop', 'Electronic', 'Upbeat'],
         songs: [
-          { name: 'Save Your Tears', artist: 'The Weeknd', year: '2020', genre: 'Synth-pop', videoId: 'OL9cmLpwgsA' },
-          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk/Pop', videoId: 'OPf0YbXqDm0' },
-          { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'ZbZSe6N_BXs' }
+          { name: 'Sunny Day', artist: 'SoundHelix 1', year: '2023', genre: 'Pop', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+          { name: 'Happy Morning', artist: 'SoundHelix 2', year: '2023', genre: 'Electronic', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' }
         ]
       },
       'happy+studying': {
-        genres: ['Pop', 'Indie', 'Rock'],
+        genres: ['Pop', 'Indie', 'Ambient'],
         songs: [
-          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock/Pop', videoId: 'xUNqsfFUwhY' },
-          { name: 'Save Your Tears', artist: 'The Weeknd', year: '2020', genre: 'Synth-pop', videoId: 'OL9cmLpwgsA' },
-          { name: 'Shape of You', artist: 'Ed Sheeran', year: '2017', genre: 'Pop', videoId: 'JGwWNGJdvx8' }
+          { name: 'Study Beats', artist: 'SoundHelix 3', year: '2023', genre: 'Ambient', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+          { name: 'Focus Time', artist: 'SoundHelix 4', year: '2023', genre: 'Electronic', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' }
         ]
       },
-      'happy+relaxing': {
-        genres: ['Soft Pop', 'Acoustic', 'Reggae'],
+      'calm+relaxing': {
+        genres: ['Ambient', 'Classical', 'Nature'],
         songs: [
-          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock/Pop', videoId: 'xUNqsfFUwhY' },
-          { name: 'Imagine', artist: 'John Lennon', year: '1971', genre: 'Soft Rock', videoId: 'YkgkThdzX-8' },
-          { name: 'Three Little Birds', artist: 'Bob Marley', year: '1977', genre: 'Reggae', videoId: 'zaLxMLbFy5w' }
-        ]
-      },
-      'energetic+exercising': {
-        genres: ['Hip-hop', 'Rock', 'Metal', 'Electronic'],
-        songs: [
-          { name: 'Lose Yourself', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: '_Yhyp-_hX2s' },
-          { name: 'Enter Sandman', artist: 'Metallica', year: '1991', genre: 'Metal', videoId: 'CD-E-LDc384' },
-          { name: 'Back in Black', artist: 'AC/DC', year: '1980', genre: 'Rock', videoId: 'pAgnJDJN4VA' },
-          { name: 'Can\'t Hold Us', artist: 'Macklemore', year: '2011', genre: 'Hip-hop', videoId: '2zNSgSzhBfM' },
-          { name: 'Industry Baby', artist: 'Lil Nas X', year: '2021', genre: 'Hip-hop', videoId: 'UTHlkHL_whs' }
-        ]
-      },
-      'energetic+walking': {
-        genres: ['Pop', 'Funk', 'Hip-hop'],
-        songs: [
-          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk/Pop', videoId: 'OPf0YbXqDm0' },
-          { name: 'Billie Jean', artist: 'Michael Jackson', year: '1982', genre: 'Pop/Funk', videoId: 'Zi_XLOBDo_Y' },
-          { name: 'Blinding Lights', artist: 'The Weeknd', year: '2019', genre: 'Synth-pop', videoId: '4NRXx6U8ABQ' }
-        ]
-      },
-      'sad+relaxing': {
-        genres: ['R&B', 'Soul', 'Classical'],
-        songs: [
-          { name: 'Lose My Mind', artist: 'Don Toliver & Doja Cat', year: '2023', genre: 'R&B/Hip-hop', videoId: 'RvFtuWBMo-I' },
-          { name: 'Someone Like You', artist: 'Adele', year: '2011', genre: 'Pop/Soul', videoId: 'hLQl3WQQoQ0' },
-          { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' }
-        ]
-      },
-      'sad+studying': {
-        genres: ['Classical', 'Ambient', 'Solo Piano'],
-        songs: [
-          { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' },
-          { name: 'Moonlight Sonata', artist: 'Beethoven', year: '1801', genre: 'Classical', videoId: '4Tr0otuiQuU' },
-          { name: 'Hurt', artist: 'Johnny Cash', year: '2002', genre: 'Country/Soul', videoId: '8AHCfZTRGiI' }
-        ]
-      },
-      'calm+meditating': {
-        genres: ['Ambient', 'Classical', 'Jazz'],
-        songs: [
-          { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
-          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
-          { name: 'Take Five', artist: 'Dave Brubeck', year: '1959', genre: 'Jazz', videoId: 'vmDDOFXSgAs' }
+          { name: 'Ocean Waves', artist: 'SoundHelix 5', year: '2023', genre: 'Nature', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' },
+          { name: 'Peaceful Piano', artist: 'SoundHelix 6', year: '2023', genre: 'Classical', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' }
         ]
       },
       'calm+sleeping': {
-        genres: ['Ambient', 'Classical', 'Nature Sounds'],
+        genres: ['Ambient', 'Classical', 'Nature'],
         songs: [
-          { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
-          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
-          { name: 'Moonlight Sonata', artist: 'Beethoven', year: '1801', genre: 'Classical', videoId: '4Tr0otuiQuU' }
+          { name: 'Sleep Music', artist: 'SoundHelix 7', year: '2023', genre: 'Ambient', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' },
+          { name: 'Night Calm', artist: 'SoundHelix 8', year: '2023', genre: 'Nature', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' }
         ]
       },
-      'angry+exercising': {
-        genres: ['Metal', 'Rock', 'Hard Hip-hop'],
+      'energetic+exercising': {
+        genres: ['Rock', 'Electronic', 'Hip-hop'],
         songs: [
-          { name: 'Enter Sandman', artist: 'Metallica', year: '1991', genre: 'Metal', videoId: 'CD-E-LDc384' },
-          { name: 'Killing in the Name', artist: 'Rage Against The Machine', year: '1992', genre: 'Rock', videoId: 'bWXazVhlyxQ' },
-          { name: 'Break Stuff', artist: 'Limp Bizkit', year: '1999', genre: 'Nu-metal', videoId: '5vP-7r1cFRE' },
-          { name: 'Chop Suey!', artist: 'System of a Down', year: '2001', genre: 'Metal', videoId: 'CSvFpBOe8eY' }
+          { name: 'Workout Mix', artist: 'SoundHelix 9', year: '2023', genre: 'Electronic', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3' },
+          { name: 'Power Up', artist: 'SoundHelix 10', year: '2023', genre: 'Rock', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3' }
         ]
       },
-      'surprised+any': {
-        genres: ['Progressive Rock', 'Experimental'],
+      'energetic+walking': {
+        genres: ['Pop', 'Rock', 'Dance'],
         songs: [
-          { name: 'Bohemian Rhapsody', artist: 'Queen', year: '1975', genre: 'Rock', videoId: 'fJ9rUzIMcZQ' },
-          { name: 'Smells Like Teen Spirit', artist: 'Nirvana', year: '1991', genre: 'Rock/Grunge', videoId: 'hTWKbfoikeg' }
+          { name: 'Walking Beat', artist: 'SoundHelix 11', year: '2023', genre: 'Pop', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3' },
+          { name: 'City Walk', artist: 'SoundHelix 12', year: '2023', genre: 'Dance', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3' }
+        ]
+      },
+      'sad+relaxing': {
+        genres: ['Ambient', 'Classical', 'Solo Piano'],
+        songs: [
+          { name: 'Melancholy', artist: 'SoundHelix 13', year: '2023', genre: 'Classical', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3' },
+          { name: 'Sad Piano', artist: 'SoundHelix 14', year: '2023', genre: 'Classical', mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3' }
         ]
       }
     };
 
+    // Глобальная переменная для текущего трека в Finder
+    let currentFinderAudio = null;
+    let currentFinderButton = null;
+
     function displayFinderRecommendations(mood, activity) {
       const key = mood + '+' + activity;
-      const data = musicDatabase[key] || musicDatabase[mood + '+any'] || musicDatabase['happy+focusing'];
+      const data = musicDatabase[key];
       
       if (data) {
         genreResult.innerHTML = `<i class="fas fa-music"></i> Recommended genres: ${data.genres.join(' · ')}`;
         
         let songsHTML = '';
-        data.songs.forEach((song) => {
+        data.songs.forEach((song, index) => {
+          const uniqueId = `finder-${mood}-${activity}-${index}`;
           songsHTML += `
-            <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=${song.videoId}', '_blank')">
+            <div class="song-item">
               <div class="song-item-header">
-                <i class="fab fa-youtube" style="color: #ff0000;"></i>
+                <i class="fas fa-music"></i>
                 <div>
-                  <h4>${song.name} <span class="youtube-badge">YouTube</span></h4>
+                  <h4>${song.name}</h4>
                   <p>${song.artist} · ${song.year} · ${song.genre}</p>
                 </div>
               </div>
-              <div style="margin-top: 0.5rem; color: #1a2b4a; font-size: 0.9rem;">
-                <i class="fas fa-external-link-alt"></i> Click to watch on YouTube
+              <div class="mini-player">
+                <button class="mini-play-btn" onclick="window.playFinderTrack('${uniqueId}', '${song.mp3}')">
+                  <i class="fas fa-play" id="play-finder-${uniqueId}"></i>
+                </button>
+                <span>Preview</span>
               </div>
             </div>
           `;
         });
         songContainer.innerHTML = songsHTML;
       } else {
-        genreResult.innerHTML = `<i class="fas fa-music"></i> Try these popular genres: Pop · Rock · Hip-hop · Classical`;
+        genreResult.innerHTML = `<i class="fas fa-music"></i> Try these popular genres: Pop · Rock · Electronic · Classical`;
         
         songContainer.innerHTML = `
-          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=OL9cmLpwgsA', '_blank')">
+          <div class="song-item">
             <div class="song-item-header">
-              <i class="fab fa-youtube" style="color: #ff0000;"></i>
+              <i class="fas fa-music"></i>
               <div>
-                <h4>Save Your Tears <span class="youtube-badge">YouTube</span></h4>
-                <p>The Weeknd · 2020 · Synth-pop</p>
+                <h4>Sample Track 1</h4>
+                <p>SoundHelix · 2023 · Pop</p>
               </div>
             </div>
-          </div>
-          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=2zNSgSzhBfM', '_blank')">
-            <div class="song-item-header">
-              <i class="fab fa-youtube" style="color: #ff0000;"></i>
-              <div>
-                <h4>Can't Hold Us <span class="youtube-badge">YouTube</span></h4>
-                <p>Macklemore & Ryan Lewis · 2011 · Hip-hop</p>
-              </div>
+            <div class="mini-player">
+              <button class="mini-play-btn" onclick="window.playFinderTrack('sample1', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')">
+                <i class="fas fa-play" id="play-finder-sample1"></i>
+              </button>
+              <span>Preview</span>
             </div>
           </div>
-          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=9E6b3swbnWg', '_blank')">
+          <div class="song-item">
             <div class="song-item-header">
-              <i class="fab fa-youtube" style="color: #ff0000;"></i>
+              <i class="fas fa-music"></i>
               <div>
-                <h4>Nocturne Op.9 No.2 <span class="youtube-badge">YouTube</span></h4>
-                <p>Chopin · 1832 · Classical</p>
+                <h4>Sample Track 2</h4>
+                <p>SoundHelix · 2023 · Rock</p>
               </div>
+            </div>
+            <div class="mini-player">
+              <button class="mini-play-btn" onclick="window.playFinderTrack('sample2', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3')">
+                <i class="fas fa-play" id="play-finder-sample2"></i>
+              </button>
+              <span>Preview</span>
             </div>
           </div>
         `;
       }
     }
+
+    // Глобальная функция для плеера в Music Finder
+    window.playFinderTrack = function(id, mp3Url) {
+      const playIcon = document.getElementById(`play-finder-${id}`);
+      const audio = document.getElementById('finderAudioPlayer') || new Audio();
+      
+      if (!document.getElementById('finderAudioPlayer')) {
+        const newAudio = document.createElement('audio');
+        newAudio.id = 'finderAudioPlayer';
+        document.body.appendChild(newAudio);
+      }
+      
+      const finderAudio = document.getElementById('finderAudioPlayer');
+      
+      if (currentFinderAudio && currentFinderAudio.src === mp3Url && !finderAudio.paused) {
+        finderAudio.pause();
+        if (currentFinderButton) {
+          currentFinderButton.className = 'fas fa-play';
+        }
+        currentFinderAudio = null;
+        currentFinderButton = null;
+      } else {
+        if (currentFinderButton) {
+          currentFinderButton.className = 'fas fa-play';
+        }
+        
+        finderAudio.src = mp3Url;
+        finderAudio.play();
+        playIcon.className = 'fas fa-pause';
+        
+        currentFinderAudio = finderAudio;
+        currentFinderButton = playIcon;
+        
+        finderAudio.onended = function() {
+          playIcon.className = 'fas fa-play';
+          currentFinderAudio = null;
+          currentFinderButton = null;
+        };
+      }
+    };
 
     suggestBtn.addEventListener('click', () => {
       const mood = moodSelect.value;
@@ -869,96 +996,97 @@
     });
 
     // ========== MUSIC EXPERIMENT ==========
+    // Использую SoundHelix треки - 100% рабочие MP3
     const experimentTracks = [
       { 
-        name: 'Here Comes The Sun', 
-        artist: 'The Beatles · 1969 · Rock/Pop',
-        artistShort: 'The Beatles',
-        genre: 'Rock/Pop',
-        era: 'classic',
+        name: 'Morning Energy', 
+        artist: 'SoundHelix · 2023 · Pop',
+        artistShort: 'SoundHelix',
+        genre: 'Pop',
+        era: 'modern',
         mood: 'happy',
-        videoId: 'xUNqsfFUwhY'
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
       },
       { 
-        name: 'Bohemian Rhapsody', 
-        artist: 'Queen · 1975 · Rock',
-        artistShort: 'Queen',
-        genre: 'Rock',
-        era: 'classic',
-        mood: 'surprised',
-        videoId: 'fJ9rUzIMcZQ'
-      },
-      { 
-        name: 'Billie Jean', 
-        artist: 'Michael Jackson · 1982 · Pop/Funk',
-        artistShort: 'Michael Jackson',
-        genre: 'Pop/Funk',
-        era: 'classic',
-        mood: 'happy',
-        videoId: 'Zi_XLOBDo_Y'
-      },
-      { 
-        name: 'Smells Like Teen Spirit', 
-        artist: 'Nirvana · 1991 · Rock/Grunge',
-        artistShort: 'Nirvana',
-        genre: 'Rock',
-        era: 'classic',
-        mood: 'energetic',
-        videoId: 'hTWKbfoikeg'
-      },
-      { 
-        name: 'Lose Yourself', 
-        artist: 'Eminem · 2002 · Hip-hop',
-        artistShort: 'Eminem',
-        genre: 'Hip-hop',
-        era: 'classic',
-        mood: 'energetic',
-        videoId: '_Yhyp-_hX2s'
-      },
-      { 
-        name: 'Enter Sandman', 
-        artist: 'Metallica · 1991 · Metal',
-        artistShort: 'Metallica',
-        genre: 'Metal',
-        era: 'classic',
-        mood: 'angry',
-        videoId: 'CD-E-LDc384'
-      },
-      { 
-        name: 'Take Five', 
-        artist: 'Dave Brubeck · 1959 · Jazz',
-        artistShort: 'Dave Brubeck',
-        genre: 'Jazz',
-        era: 'classic',
+        name: 'Afternoon Chill', 
+        artist: 'SoundHelix · 2023 · Ambient',
+        artistShort: 'SoundHelix',
+        genre: 'Ambient',
+        era: 'modern',
         mood: 'calm',
-        videoId: 'vmDDOFXSgAs'
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
       },
       { 
-        name: 'Uptown Funk', 
-        artist: 'Bruno Mars · 2014 · Funk/Pop',
-        artistShort: 'Bruno Mars',
-        genre: 'Funk/Pop',
-        era: 'modern',
-        mood: 'happy',
-        videoId: 'OPf0YbXqDm0'
-      },
-      { 
-        name: 'Save Your Tears', 
-        artist: 'The Weeknd · 2020 · Synth-pop',
-        artistShort: 'The Weeknd',
-        genre: 'Synth-pop',
-        era: 'modern',
-        mood: 'happy',
-        videoId: 'OL9cmLpwgsA'
-      },
-      { 
-        name: 'Lose My Mind', 
-        artist: 'Don Toliver & Doja Cat · 2023 · R&B/Hip-hop',
-        artistShort: 'Don Toliver & Doja Cat',
-        genre: 'R&B/Hip-hop',
+        name: 'Evening Thoughts', 
+        artist: 'SoundHelix · 2023 · Classical',
+        artistShort: 'SoundHelix',
+        genre: 'Classical',
         era: 'modern',
         mood: 'sad',
-        videoId: 'RvFtuWBMo-I'
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+      },
+      { 
+        name: 'Night Drive', 
+        artist: 'SoundHelix · 2023 · Electronic',
+        artistShort: 'SoundHelix',
+        genre: 'Electronic',
+        era: 'modern',
+        mood: 'energetic',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3'
+      },
+      { 
+        name: 'Weekend Vibe', 
+        artist: 'SoundHelix · 2023 · Funk',
+        artistShort: 'SoundHelix',
+        genre: 'Funk',
+        era: 'modern',
+        mood: 'happy',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3'
+      },
+      { 
+        name: 'Deep Focus', 
+        artist: 'SoundHelix · 2023 · Ambient',
+        artistShort: 'SoundHelix',
+        genre: 'Ambient',
+        era: 'modern',
+        mood: 'calm',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3'
+      },
+      { 
+        name: 'Power Workout', 
+        artist: 'SoundHelix · 2023 · Rock',
+        artistShort: 'SoundHelix',
+        genre: 'Rock',
+        era: 'modern',
+        mood: 'energetic',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3'
+      },
+      { 
+        name: 'Peaceful Sleep', 
+        artist: 'SoundHelix · 2023 · Nature',
+        artistShort: 'SoundHelix',
+        genre: 'Nature',
+        era: 'modern',
+        mood: 'calm',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3'
+      },
+      { 
+        name: 'Rainy Day', 
+        artist: 'SoundHelix · 2023 · Ambient',
+        artistShort: 'SoundHelix',
+        genre: 'Ambient',
+        era: 'modern',
+        mood: 'sad',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3'
+      },
+      { 
+        name: 'Celebration', 
+        artist: 'SoundHelix · 2023 · Pop',
+        artistShort: 'SoundHelix',
+        genre: 'Pop',
+        era: 'modern',
+        mood: 'happy',
+        mp3: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3'
       }
     ];
 
@@ -967,7 +1095,18 @@
     
     const trackDisplay = document.getElementById('currentTrackDisplay');
     const artistDisplay = document.getElementById('currentArtistDisplay');
-    const youtubePlayer = document.getElementById('youtubePlayer');
+    const playerTrackTitle = document.getElementById('playerTrackTitle');
+    const playerTrackArtist = document.getElementById('playerTrackArtist');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const playPauseIcon = document.getElementById('playPauseIcon');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeSpan = document.getElementById('currentTime');
+    const durationSpan = document.getElementById('duration');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeFill = document.getElementById('volumeFill');
+    const volumeIcon = document.getElementById('volumeIcon');
     const moodRadios = document.querySelectorAll('input[name="moodRating"]');
     const likeRadios = document.querySelectorAll('input[name="likeTrack"]');
     const feedbackDiv = document.getElementById('experimentFeedback');
@@ -975,14 +1114,45 @@
     const resultsDiv = document.getElementById('experimentResults');
     const resultsList = document.getElementById('resultsList');
 
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }
+
     function updateExperimentTrack() {
       const track = experimentTracks[trackIndex];
       trackDisplay.textContent = track.name;
       artistDisplay.textContent = track.artist;
+      playerTrackTitle.textContent = track.name;
+      playerTrackArtist.textContent = track.artistShort;
       
-      youtubePlayer.src = `https://www.youtube.com/embed/${track.videoId}?autoplay=0`;
+      audioPlayer.src = track.mp3;
+      audioPlayer.load();
       
-      feedbackDiv.innerHTML = `⚡ Track ${trackIndex + 1} of 10. Watch the YouTube video and rate the song to continue.`;
+      playPauseIcon.className = 'fas fa-play';
+      
+      feedbackDiv.innerHTML = `⚡ Track ${trackIndex + 1} of 10. Listen and rate the song to continue.`;
+    }
+
+    function togglePlay() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseIcon.className = 'fas fa-pause';
+      } else {
+        audioPlayer.pause();
+        playPauseIcon.className = 'fas fa-play';
+      }
+    }
+
+    function updateProgress() {
+      if (audioPlayer.duration) {
+        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressFill.style.width = progress + '%';
+        currentTimeSpan.textContent = formatTime(audioPlayer.currentTime);
+        durationSpan.textContent = formatTime(audioPlayer.duration);
+      }
     }
 
     function clearRatings() {
@@ -1031,10 +1201,7 @@
         ? Object.keys(genreCount).reduce((a, b) => genreCount[a] > genreCount[b] ? a : b)
         : 'not determined';
       
-      const favoriteEra = Object.keys(eraCount).length > 0
-        ? Object.keys(eraCount).reduce((a, b) => eraCount[a] > eraCount[b] ? a : b)
-        : 'not determined';
-      
+      const favoriteEra = 'modern';
       const favoriteMood = Object.keys(moodCount).length > 0
         ? Object.keys(moodCount).reduce((a, b) => moodCount[a] > moodCount[b] ? a : b)
         : 'not determined';
@@ -1049,11 +1216,6 @@
         resultsHTML += `<li><i class="fas fa-star" style="color: #ffd700;"></i> <strong>Your favorite genre:</strong> ${favoriteGenre}</li>`;
       }
       
-      if (favoriteEra !== 'not determined') {
-        const eraText = favoriteEra === 'classic' ? 'Classic (before 2010)' : 'Modern (2010-present)';
-        resultsHTML += `<li><i class="fas fa-clock"></i> <strong>You prefer:</strong> ${eraText}</li>`;
-      }
-      
       if (favoriteMood !== 'not determined') {
         resultsHTML += `<li><i class="fas fa-smile"></i> <strong>Your mood in music:</strong> ${favoriteMood} songs</li>`;
       }
@@ -1063,6 +1225,43 @@
       resultsList.innerHTML = resultsHTML;
       resultsDiv.style.display = 'block';
     }
+
+    playPauseBtn.addEventListener('click', togglePlay);
+
+    audioPlayer.addEventListener('timeupdate', updateProgress);
+
+    audioPlayer.addEventListener('loadedmetadata', () => {
+      durationSpan.textContent = formatTime(audioPlayer.duration);
+    });
+
+    audioPlayer.addEventListener('ended', () => {
+      playPauseIcon.className = 'fas fa-play';
+    });
+
+    progressBar.addEventListener('click', (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const clickRatio = clickX / width;
+      audioPlayer.currentTime = clickRatio * audioPlayer.duration;
+    });
+
+    volumeSlider.addEventListener('click', (e) => {
+      const rect = volumeSlider.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const clickRatio = clickX / width;
+      audioPlayer.volume = clickRatio;
+      volumeFill.style.width = (clickRatio * 100) + '%';
+      
+      if (audioPlayer.volume === 0) {
+        volumeIcon.className = 'fas fa-volume-mute';
+      } else if (audioPlayer.volume < 0.5) {
+        volumeIcon.className = 'fas fa-volume-down';
+      } else {
+        volumeIcon.className = 'fas fa-volume-up';
+      }
+    });
 
     nextBtn.addEventListener('click', () => {
       const saved = saveCurrentRatings();
