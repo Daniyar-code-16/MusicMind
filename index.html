@@ -497,7 +497,7 @@
     <div class="card" onclick="location.href='#experiment'">
       <i class="fas fa-flask"></i>
       <h3>Music Experiment</h3>
-      <p>Listen and rate songs on YouTube to discover your musical personality.</p>
+      <p>Listen and rate 10 songs to discover your musical personality.</p>
     </div>
     <div class="card" onclick="location.href='#culture'">
       <i class="fas fa-globe-americas"></i>
@@ -589,11 +589,11 @@
   <!-- MUSIC EXPERIMENT SECTION -->
   <section id="experiment" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-flask" style="color:#7aa5c2;"></i> Music Experiment</h2>
-    <p>Listen to 8 different songs on YouTube and rate them. After finishing, you'll get a personalized analysis of your musical taste.</p>
+    <p>Listen to 10 different songs on YouTube and rate them. After finishing, you'll get a personalized analysis of your musical taste.</p>
 
     <div class="track-card" id="experimentTrackCard">
       <div class="track-name" id="currentTrackDisplay">Here Comes The Sun</div>
-      <div class="track-artist" id="currentArtistDisplay">The Beatles · 1969 · Pop/Rock</div>
+      <div class="track-artist" id="currentArtistDisplay">The Beatles · 1969 · Rock/Pop</div>
       
       <!-- YouTube плеер -->
       <div class="youtube-player-container" id="youtubePlayerContainer">
@@ -623,7 +623,7 @@
       <button class="btn-dark" id="nextTrackBtn"><i class="fas fa-forward"></i> Next Track</button>
 
       <div id="experimentFeedback" class="experiment-message">
-        ⚡ Track 1 of 8. Watch the YouTube video and rate the song to continue.
+        ⚡ Track 1 of 10. Watch the YouTube video and rate the song to continue.
       </div>
     </div>
 
@@ -711,48 +711,52 @@
     // База данных YouTube видео для Music Finder
     const musicDatabase = {
       'happy+focusing': {
-        genres: ['Upbeat Pop', 'Electronic', 'Motivational'],
+        genres: ['Pop', 'Synth-pop', 'Motivational'],
         songs: [
-          { name: 'Can\'t Hold Us', artist: 'Macklemore & Ryan Lewis', year: '2011', genre: 'Hip-hop/Pop', videoId: '2zNSgSzhBfM' },
           { name: 'Save Your Tears', artist: 'The Weeknd', year: '2020', genre: 'Synth-pop', videoId: 'OL9cmLpwgsA' },
+          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk/Pop', videoId: 'OPf0YbXqDm0' },
           { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'ZbZSe6N_BXs' }
         ]
       },
       'happy+studying': {
-        genres: ['Upbeat Pop', 'Indie', 'Motivational'],
+        genres: ['Pop', 'Indie', 'Rock'],
         songs: [
+          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock/Pop', videoId: 'xUNqsfFUwhY' },
           { name: 'Save Your Tears', artist: 'The Weeknd', year: '2020', genre: 'Synth-pop', videoId: 'OL9cmLpwgsA' },
-          { name: 'Can\'t Hold Us', artist: 'Macklemore & Ryan Lewis', year: '2011', genre: 'Hip-hop/Pop', videoId: '2zNSgSzhBfM' },
-          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Pop/Rock', videoId: 'xUNqsfFUwhY' }
+          { name: 'Shape of You', artist: 'Ed Sheeran', year: '2017', genre: 'Pop', videoId: 'JGwWNGJdvx8' }
         ]
       },
       'happy+relaxing': {
         genres: ['Soft Pop', 'Acoustic', 'Reggae'],
         songs: [
-          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Pop/Rock', videoId: 'xUNqsfFUwhY' },
+          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock/Pop', videoId: 'xUNqsfFUwhY' },
+          { name: 'Imagine', artist: 'John Lennon', year: '1971', genre: 'Soft Rock', videoId: 'YkgkThdzX-8' },
           { name: 'Three Little Birds', artist: 'Bob Marley', year: '1977', genre: 'Reggae', videoId: 'zaLxMLbFy5w' }
         ]
       },
       'energetic+exercising': {
-        genres: ['Hip-hop', 'Rock', 'Electronic'],
+        genres: ['Hip-hop', 'Rock', 'Metal', 'Electronic'],
         songs: [
-          { name: 'Can\'t Hold Us', artist: 'Macklemore & Ryan Lewis', year: '2011', genre: 'Hip-hop/Pop', videoId: '2zNSgSzhBfM' },
           { name: 'Lose Yourself', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: '_Yhyp-_hX2s' },
-          { name: 'NOW OR NEVER', artist: 'Tkandz', year: '2023', genre: 'Hip-hop/Rap', videoId: 'VYWHtGbvLdY' }
+          { name: 'Enter Sandman', artist: 'Metallica', year: '1991', genre: 'Metal', videoId: 'CD-E-LDc384' },
+          { name: 'Back in Black', artist: 'AC/DC', year: '1980', genre: 'Rock', videoId: 'pAgnJDJN4VA' },
+          { name: 'Can\'t Hold Us', artist: 'Macklemore', year: '2011', genre: 'Hip-hop', videoId: '2zNSgSzhBfM' },
+          { name: 'Industry Baby', artist: 'Lil Nas X', year: '2021', genre: 'Hip-hop', videoId: 'UTHlkHL_whs' }
         ]
       },
       'energetic+walking': {
-        genres: ['Pop', 'Hip-hop', 'Rock'],
+        genres: ['Pop', 'Funk', 'Hip-hop'],
         songs: [
-          { name: 'Can\'t Hold Us', artist: 'Macklemore & Ryan Lewis', year: '2011', genre: 'Hip-hop/Pop', videoId: '2zNSgSzhBfM' },
-          { name: 'Save Your Tears', artist: 'The Weeknd', year: '2020', genre: 'Synth-pop', videoId: 'OL9cmLpwgsA' },
-          { name: 'NOW OR NEVER', artist: 'Tkandz', year: '2023', genre: 'Hip-hop/Rap', videoId: 'VYWHtGbvLdY' }
+          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk/Pop', videoId: 'OPf0YbXqDm0' },
+          { name: 'Billie Jean', artist: 'Michael Jackson', year: '1982', genre: 'Pop/Funk', videoId: 'Zi_XLOBDo_Y' },
+          { name: 'Blinding Lights', artist: 'The Weeknd', year: '2019', genre: 'Synth-pop', videoId: '4NRXx6U8ABQ' }
         ]
       },
       'sad+relaxing': {
-        genres: ['R&B', 'Soul', 'Alternative'],
+        genres: ['R&B', 'Soul', 'Classical'],
         songs: [
           { name: 'Lose My Mind', artist: 'Don Toliver & Doja Cat', year: '2023', genre: 'R&B/Hip-hop', videoId: 'RvFtuWBMo-I' },
+          { name: 'Someone Like You', artist: 'Adele', year: '2011', genre: 'Pop/Soul', videoId: 'hLQl3WQQoQ0' },
           { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' }
         ]
       },
@@ -760,36 +764,47 @@
         genres: ['Classical', 'Ambient', 'Solo Piano'],
         songs: [
           { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' },
-          { name: 'Moonlight Sonata', artist: 'Beethoven', year: '1801', genre: 'Classical', videoId: '4Tr0otuiQuU' }
+          { name: 'Moonlight Sonata', artist: 'Beethoven', year: '1801', genre: 'Classical', videoId: '4Tr0otuiQuU' },
+          { name: 'Hurt', artist: 'Johnny Cash', year: '2002', genre: 'Country/Soul', videoId: '8AHCfZTRGiI' }
         ]
       },
       'calm+meditating': {
-        genres: ['Ambient', 'Classical', 'Nature Sounds'],
+        genres: ['Ambient', 'Classical', 'Jazz'],
         songs: [
-          { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' },
-          { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' }
+          { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
+          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
+          { name: 'Take Five', artist: 'Dave Brubeck', year: '1959', genre: 'Jazz', videoId: 'vmDDOFXSgAs' }
         ]
       },
       'calm+sleeping': {
         genres: ['Ambient', 'Classical', 'Nature Sounds'],
         songs: [
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
-          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' }
+          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
+          { name: 'Moonlight Sonata', artist: 'Beethoven', year: '1801', genre: 'Classical', videoId: '4Tr0otuiQuU' }
         ]
       },
       'angry+exercising': {
-        genres: ['Rock', 'Metal', 'Hard Hip-hop'],
+        genres: ['Metal', 'Rock', 'Hard Hip-hop'],
         songs: [
-          { name: 'Lose Yourself', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: '_Yhyp-_hX2s' },
-          { name: 'NOW OR NEVER', artist: 'Tkandz', year: '2023', genre: 'Hip-hop/Rap', videoId: 'VYWHtGbvLdY' },
-          { name: 'Killing in the Name', artist: 'Rage Against The Machine', year: '1992', genre: 'Rock', videoId: 'bWXazVhlyxQ' }
+          { name: 'Enter Sandman', artist: 'Metallica', year: '1991', genre: 'Metal', videoId: 'CD-E-LDc384' },
+          { name: 'Killing in the Name', artist: 'Rage Against The Machine', year: '1992', genre: 'Rock', videoId: 'bWXazVhlyxQ' },
+          { name: 'Break Stuff', artist: 'Limp Bizkit', year: '1999', genre: 'Nu-metal', videoId: '5vP-7r1cFRE' },
+          { name: 'Chop Suey!', artist: 'System of a Down', year: '2001', genre: 'Metal', videoId: 'CSvFpBOe8eY' }
+        ]
+      },
+      'surprised+any': {
+        genres: ['Progressive Rock', 'Experimental'],
+        songs: [
+          { name: 'Bohemian Rhapsody', artist: 'Queen', year: '1975', genre: 'Rock', videoId: 'fJ9rUzIMcZQ' },
+          { name: 'Smells Like Teen Spirit', artist: 'Nirvana', year: '1991', genre: 'Rock/Grunge', videoId: 'hTWKbfoikeg' }
         ]
       }
     };
 
     function displayFinderRecommendations(mood, activity) {
       const key = mood + '+' + activity;
-      const data = musicDatabase[key];
+      const data = musicDatabase[key] || musicDatabase[mood + '+any'] || musicDatabase['happy+focusing'];
       
       if (data) {
         genreResult.innerHTML = `<i class="fas fa-music"></i> Recommended genres: ${data.genres.join(' · ')}`;
@@ -813,8 +828,7 @@
         });
         songContainer.innerHTML = songsHTML;
       } else {
-        const defaultGenres = ['Pop', 'Rock', 'Hip-hop', 'Electronic'];
-        genreResult.innerHTML = `<i class="fas fa-music"></i> Try these popular genres: ${defaultGenres.join(' · ')}`;
+        genreResult.innerHTML = `<i class="fas fa-music"></i> Try these popular genres: Pop · Rock · Hip-hop · Classical`;
         
         songContainer.innerHTML = `
           <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=OL9cmLpwgsA', '_blank')">
@@ -835,12 +849,12 @@
               </div>
             </div>
           </div>
-          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=RvFtuWBMo-I', '_blank')">
+          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=9E6b3swbnWg', '_blank')">
             <div class="song-item-header">
               <i class="fab fa-youtube" style="color: #ff0000;"></i>
               <div>
-                <h4>Lose My Mind <span class="youtube-badge">YouTube</span></h4>
-                <p>Don Toliver & Doja Cat · 2023 · R&B/Hip-hop</p>
+                <h4>Nocturne Op.9 No.2 <span class="youtube-badge">YouTube</span></h4>
+                <p>Chopin · 1832 · Classical</p>
               </div>
             </div>
           </div>
@@ -858,21 +872,39 @@
     const experimentTracks = [
       { 
         name: 'Here Comes The Sun', 
-        artist: 'The Beatles · 1969 · Pop/Rock',
+        artist: 'The Beatles · 1969 · Rock/Pop',
         artistShort: 'The Beatles',
-        genre: 'Pop/Rock',
+        genre: 'Rock/Pop',
         era: 'classic',
         mood: 'happy',
         videoId: 'xUNqsfFUwhY'
       },
       { 
-        name: 'Save Your Tears', 
-        artist: 'The Weeknd · 2020 · Synth-pop',
-        artistShort: 'The Weeknd',
-        genre: 'Synth-pop',
-        era: 'modern',
+        name: 'Bohemian Rhapsody', 
+        artist: 'Queen · 1975 · Rock',
+        artistShort: 'Queen',
+        genre: 'Rock',
+        era: 'classic',
+        mood: 'surprised',
+        videoId: 'fJ9rUzIMcZQ'
+      },
+      { 
+        name: 'Billie Jean', 
+        artist: 'Michael Jackson · 1982 · Pop/Funk',
+        artistShort: 'Michael Jackson',
+        genre: 'Pop/Funk',
+        era: 'classic',
         mood: 'happy',
-        videoId: 'OL9cmLpwgsA'
+        videoId: 'Zi_XLOBDo_Y'
+      },
+      { 
+        name: 'Smells Like Teen Spirit', 
+        artist: 'Nirvana · 1991 · Rock/Grunge',
+        artistShort: 'Nirvana',
+        genre: 'Rock',
+        era: 'classic',
+        mood: 'energetic',
+        videoId: 'hTWKbfoikeg'
       },
       { 
         name: 'Lose Yourself', 
@@ -884,22 +916,40 @@
         videoId: '_Yhyp-_hX2s'
       },
       { 
-        name: 'Can\'t Hold Us', 
-        artist: 'Macklemore & Ryan Lewis · 2011 · Hip-hop/Pop',
-        artistShort: 'Macklemore',
-        genre: 'Hip-hop/Pop',
-        era: 'modern',
-        mood: 'energetic',
-        videoId: '2zNSgSzhBfM'
+        name: 'Enter Sandman', 
+        artist: 'Metallica · 1991 · Metal',
+        artistShort: 'Metallica',
+        genre: 'Metal',
+        era: 'classic',
+        mood: 'angry',
+        videoId: 'CD-E-LDc384'
       },
       { 
-        name: 'Nocturne Op.9 No.2', 
-        artist: 'Chopin · 1832 · Classical',
-        artistShort: 'Chopin',
-        genre: 'Classical',
+        name: 'Take Five', 
+        artist: 'Dave Brubeck · 1959 · Jazz',
+        artistShort: 'Dave Brubeck',
+        genre: 'Jazz',
         era: 'classic',
         mood: 'calm',
-        videoId: '9E6b3swbnWg'
+        videoId: 'vmDDOFXSgAs'
+      },
+      { 
+        name: 'Uptown Funk', 
+        artist: 'Bruno Mars · 2014 · Funk/Pop',
+        artistShort: 'Bruno Mars',
+        genre: 'Funk/Pop',
+        era: 'modern',
+        mood: 'happy',
+        videoId: 'OPf0YbXqDm0'
+      },
+      { 
+        name: 'Save Your Tears', 
+        artist: 'The Weeknd · 2020 · Synth-pop',
+        artistShort: 'The Weeknd',
+        genre: 'Synth-pop',
+        era: 'modern',
+        mood: 'happy',
+        videoId: 'OL9cmLpwgsA'
       },
       { 
         name: 'Lose My Mind', 
@@ -909,24 +959,6 @@
         era: 'modern',
         mood: 'sad',
         videoId: 'RvFtuWBMo-I'
-      },
-      { 
-        name: 'NOW OR NEVER', 
-        artist: 'Tkandz · 2023 · Hip-hop/Rap',
-        artistShort: 'Tkandz',
-        genre: 'Hip-hop/Rap',
-        era: 'modern',
-        mood: 'energetic',
-        videoId: 'VYWHtGbvLdY'
-      },
-      { 
-        name: 'Weightless', 
-        artist: 'Marconi Union · 2011 · Ambient',
-        artistShort: 'Marconi Union',
-        genre: 'Ambient',
-        era: 'modern',
-        mood: 'calm',
-        videoId: 'UfcAVejslrU'
       }
     ];
 
@@ -948,10 +980,9 @@
       trackDisplay.textContent = track.name;
       artistDisplay.textContent = track.artist;
       
-      // Обновляем YouTube видео
       youtubePlayer.src = `https://www.youtube.com/embed/${track.videoId}?autoplay=0`;
       
-      feedbackDiv.innerHTML = `⚡ Track ${trackIndex + 1} of 8. Watch the YouTube video and rate the song to continue.`;
+      feedbackDiv.innerHTML = `⚡ Track ${trackIndex + 1} of 10. Watch the YouTube video and rate the song to continue.`;
     }
 
     function clearRatings() {
@@ -1009,7 +1040,7 @@
         : 'not determined';
       
       let resultsHTML = `
-        <li><i class="fas fa-heart" style="color: #ff6b6b;"></i> <strong>Songs you liked:</strong> ${likedTracks.length} out of ${userRatings.length}</li>
+        <li><i class="fas fa-heart" style="color: #ff6b6b;"></i> <strong>Songs you liked:</strong> ${likedTracks.length} out of 10</li>
         <li><i class="fas fa-thumbs-down" style="color: #6b6b6b;"></i> <strong>Songs you didn't like:</strong> ${dislikedTracks.length}</li>
         <li><i class="fas fa-meh"></i> <strong>Neutral songs:</strong> ${neutralTracks.length}</li>
       `;
