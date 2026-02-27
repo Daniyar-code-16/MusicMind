@@ -436,6 +436,25 @@
       color: #3f5568;
     }
 
+    .bibliography {
+      background: #f1f6fd;
+      border-radius: 24px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #5f7184;
+      text-align: center;
+    }
+
+    .bibliography a {
+      color: #5f4b8b;
+      text-decoration: none;
+    }
+
+    .bibliography a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 700px) {
       .navbar {
         flex-direction: column;
@@ -482,7 +501,7 @@
     <div class="card" onclick="location.href='#experiment'">
       <i class="fas fa-flask"></i>
       <h3>Music Experiment</h3>
-      <p>Watch and rate 8 music videos to discover your musical personality.</p>
+      <p>Watch and rate 10 music videos to discover your musical personality.</p>
     </div>
     <div class="card" onclick="location.href='#culture'">
       <i class="fas fa-globe-americas"></i>
@@ -499,27 +518,27 @@
     <div class="info-grid">
       <div class="info-card">
         <h4><i class="fas fa-brain"></i> Music & Brain Chemistry</h4>
-        <p>Music triggers the release of dopamine, the "feel-good" neurotransmitter, similar to the effects of pleasurable activities. It also increases serotonin production, which helps regulate mood and emotions (Sazandrishvili, 2024).</p>
+        <p>Music triggers the release of dopamine, the "feel-good" neurotransmitter, similar to the effects of pleasurable activities. It also increases serotonin production, which helps regulate mood and emotions.</p>
       </div>
       <div class="info-card">
         <h4><i class="fas fa-smile"></i> Music & Mood</h4>
-        <p>Happy music boosts positive emotions while calm music reduces anxiety. The PANAS mood scale studies show music can change mood from negative to positive with test-retest reliability of +0.93 (Deshmukh and Gupta, 2022).</p>
+        <p>Happy music boosts positive emotions while calm music reduces anxiety. Studies show music can change mood from negative to positive with high reliability.</p>
       </div>
       <div class="info-card">
         <h4><i class="fas fa-heart"></i> Music & Mental Health</h4>
-        <p>Music therapy reduces depression, anxiety, and ADHD symptoms. It alters brain chemicals like dopamine and serotonin, improving emotional balance and reducing stress hormones (Sazandrishvili, 2024).</p>
+        <p>Music therapy reduces depression, anxiety, and ADHD symptoms. It alters brain chemicals like dopamine and serotonin, improving emotional balance and reducing stress.</p>
       </div>
       <div class="info-card">
         <h4><i class="fas fa-microscope"></i> Music & Cognitive Performance</h4>
-        <p>Studies show music affects cognitive tasks differently based on task type and music genre. Happy music improves working memory while instrumental music helps concentration (Wang, 2023; Piccardi and Palmiero, 2024).</p>
+        <p>Studies show music affects cognitive tasks differently based on task type and music genre. Happy music improves working memory while instrumental music helps concentration.</p>
       </div>
       <div class="info-card">
         <h4><i class="fas fa-bed"></i> Music & Relaxation</h4>
-        <p>Slow tempo music lowers heart rate and reduces cortisol (stress hormone). Classical and calming music before sleep improves sleep quality and reduces nighttime awakenings (Sazandrishvili, 2024).</p>
+        <p>Slow tempo music lowers heart rate and reduces cortisol (stress hormone). Classical and calming music before sleep improves sleep quality.</p>
       </div>
       <div class="info-card">
         <h4><i class="fas fa-bolt"></i> Music & Arousal</h4>
-        <p>Upbeat, fast-tempo music increases arousal and energy levels. Rock and energetic music improves physical performance during exercise and sports activities (Wang, 2023).</p>
+        <p>Upbeat, fast-tempo music increases arousal and energy levels. Rock and energetic music improves physical performance during exercise and sports activities.</p>
       </div>
     </div>
   </section>
@@ -536,9 +555,6 @@
           <option value="happy">Happy</option>
           <option value="sad">Sad</option>
           <option value="angry">Angry</option>
-          <option value="fearful">Fearful</option>
-          <option value="surprised">Surprised</option>
-          <option value="disgusted">Disgusted</option>
           <option value="calm">Calm</option>
           <option value="energetic">Energetic</option>
         </select>
@@ -567,14 +583,12 @@
     <div id="songRecommendations" class="song-list">
       <!-- YouTube recommendations will appear here -->
     </div>
-
-    <p style="margin-top:1.5rem; color:#4a5e71;"><i class="fas fa-lightbulb"></i> Based on research by Wang (2023) about how different music genres affect cognitive performance and emotions.</p>
   </section>
 
   <!-- MUSIC EXPERIMENT SECTION -->
   <section id="experiment" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-flask" style="color:#7aa5c2;"></i> Music Experiment</h2>
-    <p>Watch 8 different music videos and rate them. After finishing, you'll get a personalized analysis of your musical taste.</p>
+    <p>Watch 10 different music videos and rate them. After finishing, you'll get a personalized analysis of your musical taste.</p>
 
     <div class="track-card" id="experimentTrackCard">
       <div class="track-name" id="currentTrackDisplay">Here Comes The Sun</div>
@@ -608,7 +622,7 @@
       <button class="btn-dark" id="nextTrackBtn"><i class="fas fa-forward"></i> Next Track</button>
 
       <div id="experimentFeedback" class="experiment-message">
-        ⚡ Track 1 of 8. Watch the video and rate the song to continue.
+        ⚡ Track 1 of 10. Watch the video and rate the song to continue.
       </div>
     </div>
 
@@ -630,36 +644,33 @@
       <div class="culture-card">
         <h4><i class="fas fa-earth-asia"></i> Music Worldwide</h4>
         <ul class="culture-list">
-          <li><i class="fas fa-music"></i> <strong>European Music:</strong> Classical (Mozart, Beethoven), folk traditions, electronic dance music. The "Mozart effect" studies show classical music may improve spatial-temporal reasoning (Wang, 2023).</li>
-          <li><i class="fas fa-music"></i> <strong>Asian Music:</strong> K-pop (BTS, Blackpink), Japanese anime soundtracks, Indian Bollywood, Gamelan from Indonesia, traditional Chinese instruments.</li>
-          <li><i class="fas fa-music"></i> <strong>African Music:</strong> Afrobeat (Fela Kuti), drumming traditions, Highlife, South African choral music. African rhythms influence many global genres.</li>
-          <li><i class="fas fa-music"></i> <strong>American Music:</strong> Jazz (born in New Orleans), Blues, Rock and Roll, Hip-hop, Country, Latin music (Salsa, Reggaeton).</li>
+          <li><i class="fas fa-music"></i> <strong>European Music:</strong> Classical (Mozart, Beethoven), folk traditions, electronic dance music.</li>
+          <li><i class="fas fa-music"></i> <strong>Asian Music:</strong> K-pop (BTS, Blackpink), Japanese anime soundtracks, Indian Bollywood.</li>
+          <li><i class="fas fa-music"></i> <strong>African Music:</strong> Afrobeat (Fela Kuti), drumming traditions, Highlife.</li>
+          <li><i class="fas fa-music"></i> <strong>American Music:</strong> Jazz, Blues, Rock and Roll, Hip-hop, Country.</li>
         </ul>
-        <p style="margin-top:1rem;">Music connects cultures and people across the world. It allows us to understand different traditions and emotions without words.</p>
       </div>
 
       <div class="culture-card">
         <h4><i class="fas fa-film"></i> Music in Life</h4>
         <ul class="culture-list">
-          <li><i class="fas fa-film"></i> <strong>Movies:</strong> Film scores set the emotional tone. John Williams' scores for Star Wars, Harry Potter, and Jurassic Park use music to create excitement, fear, or joy.</li>
-          <li><i class="fas fa-gamepad"></i> <strong>Video Games:</strong> Game soundtracks enhance immersion. The Legend of Zelda, Minecraft, and Final Fantasy have iconic music that players remember for years.</li>
-          <li><i class="fas fa-mask"></i> <strong>Theater:</strong> Musicals tell stories through song. Hamilton, The Phantom of the Opera, and Les Misérables use music to express emotions that dialogue cannot convey.</li>
-          <li><i class="fas fa-medal"></i> <strong>Sports:</strong> Pump-up anthems energize athletes and crowds. "We Will Rock You" by Queen, "Eye of the Tiger" by Survivor unite fans.</li>
-          <li><i class="fas fa-microphone-alt"></i> <strong>Concerts:</strong> Live music creates shared emotional experiences. Thousands of people singing together releases oxytocin, creating feelings of connection.</li>
-          <li><i class="fas fa-heartbeat"></i> <strong>Therapy:</strong> Music therapy treats depression, anxiety, PTSD, and autism. It helps patients express emotions and reduces stress (Sazandrishvili, 2024).</li>
+          <li><i class="fas fa-film"></i> <strong>Movies:</strong> Film scores set the emotional tone.</li>
+          <li><i class="fas fa-gamepad"></i> <strong>Video Games:</strong> Game soundtracks enhance immersion.</li>
+          <li><i class="fas fa-mask"></i> <strong>Theater:</strong> Musicals tell stories through song.</li>
+          <li><i class="fas fa-medal"></i> <strong>Sports:</strong> Pump-up anthems energize athletes.</li>
+          <li><i class="fas fa-microphone-alt"></i> <strong>Concerts:</strong> Live music creates shared experiences.</li>
         </ul>
       </div>
     </div>
-    
-    <div style="margin-top:2rem; background:#f1f6fd; border-radius:28px; padding:1.5rem;">
-      <h4><i class="fas fa-quote-right"></i> Why Music Matters</h4>
-      <p>Music is a universal language that transcends borders. It helps us express feelings when words are not enough, connects us to our cultural heritage, and brings people together in shared emotional experiences. Research shows that music alters brain chemistry, improves mental health, and enhances cognitive performance (Piccardi and Palmiero, 2024).</p>
-    </div>
   </section>
+
+  <!-- БИБЛИОГРАФИЯ В КОНЦЕ -->
+  <div class="bibliography">
+    <p><i class="fas fa-book"></i> Based on research: Deshmukh and Gupta (2022), Wang (2023), Sazandrishvili (2024), Piccardi and Palmiero (2024)</p>
+  </div>
 
   <footer class="footer">
     <p>MusicMind · MYP Personal Project · The influence of music on human life</p>
-    <p>Based on research: Deshmukh and Gupta (2022), Wang (2023), Sazandrishvili (2024), Piccardi and Palmiero (2024)</p>
   </footer>
 </main>
 
@@ -693,33 +704,90 @@
     const genreResult = document.getElementById('genreResult');
     const songContainer = document.getElementById('songRecommendations');
 
+    // БОЛЬШАЯ БАЗА ПЕСЕН ДЛЯ MUSIC FINDER
     const musicDatabase = {
       'happy+focusing': {
         genres: ['Pop', 'Electronic', 'Upbeat'],
         songs: [
           { name: 'Save Your Tears', artist: 'The Weeknd', year: '2020', genre: 'Synth-pop', videoId: 'OL9cmLpwgsA' },
-          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk/Pop', videoId: 'OPf0YbXqDm0' }
+          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk/Pop', videoId: 'OPf0YbXqDm0' },
+          { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'ZbZSe6N_BXs' },
+          { name: 'Blinding Lights', artist: 'The Weeknd', year: '2019', genre: 'Synth-pop', videoId: '4NRXx6U8ABQ' }
         ]
       },
       'happy+studying': {
         genres: ['Pop', 'Rock', 'Indie'],
         songs: [
           { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock/Pop', videoId: 'xUNqsfFUwhY' },
-          { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'ZbZSe6N_BXs' }
+          { name: 'Shape of You', artist: 'Ed Sheeran', year: '2017', genre: 'Pop', videoId: 'JGwWNGJdvx8' },
+          { name: 'Counting Stars', artist: 'OneRepublic', year: '2013', genre: 'Pop/Rock', videoId: 'hT_nvWreIhg' },
+          { name: 'Viva La Vida', artist: 'Coldplay', year: '2008', genre: 'Rock', videoId: 'dvgZkm1xWPE' }
+        ]
+      },
+      'happy+relaxing': {
+        genres: ['Soft Pop', 'Acoustic', 'Reggae'],
+        songs: [
+          { name: 'Three Little Birds', artist: 'Bob Marley', year: '1977', genre: 'Reggae', videoId: 'zaLxMLbFy5w' },
+          { name: 'Perfect', artist: 'Ed Sheeran', year: '2017', genre: 'Acoustic Pop', videoId: '2Vv-BfVoq4g' },
+          { name: 'Stand By Me', artist: 'Ben E. King', year: '1961', genre: 'Soul', videoId: 'hwZNL7QVJjE' }
+        ]
+      },
+      'happy+walking': {
+        genres: ['Pop', 'Funk', 'Dance'],
+        songs: [
+          { name: 'Walking on Sunshine', artist: 'Katrina & The Waves', year: '1985', genre: 'Pop', videoId: 'iPUmE-tne5U' },
+          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk', videoId: 'OPf0YbXqDm0' },
+          { name: 'Can\'t Stop the Feeling', artist: 'Justin Timberlake', year: '2016', genre: 'Pop', videoId: 'ru0K8uYEZWw' }
         ]
       },
       'energetic+exercising': {
         genres: ['Hip-hop', 'Rock', 'Electronic'],
         songs: [
           { name: 'Lose Yourself', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: '_Yhyp-_hX2s' },
-          { name: 'Can\'t Hold Us', artist: 'Macklemore', year: '2011', genre: 'Hip-hop', videoId: '2zNSgSzhBfM' }
+          { name: 'Can\'t Hold Us', artist: 'Macklemore', year: '2011', genre: 'Hip-hop', videoId: '2zNSgSzhBfM' },
+          { name: 'Eye of the Tiger', artist: 'Survivor', year: '1982', genre: 'Rock', videoId: 'btPJPFnesV4' },
+          { name: 'Stronger', artist: 'Kanye West', year: '2007', genre: 'Hip-hop', videoId: 'PsO6ZnUZI0g' },
+          { name: 'Power', artist: 'Kanye West', year: '2010', genre: 'Hip-hop', videoId: 'L53gjP-TtGE' }
         ]
       },
-      'calm+relaxing': {
-        genres: ['Ambient', 'Classical', 'Jazz'],
+      'energetic+walking': {
+        genres: ['Rock', 'Pop', 'Dance'],
+        songs: [
+          { name: 'Billie Jean', artist: 'Michael Jackson', year: '1982', genre: 'Pop', videoId: 'Zi_XLOBDo_Y' },
+          { name: 'Shake It Off', artist: 'Taylor Swift', year: '2014', genre: 'Pop', videoId: 'nfWlot6h_JM' },
+          { name: 'Roar', artist: 'Katy Perry', year: '2013', genre: 'Pop', videoId: 'CevxZvSJLk8' }
+        ]
+      },
+      'sad+relaxing': {
+        genres: ['R&B', 'Soul', 'Ambient'],
+        songs: [
+          { name: 'Someone Like You', artist: 'Adele', year: '2011', genre: 'Soul', videoId: 'hLQl3WQQoQ0' },
+          { name: 'Fix You', artist: 'Coldplay', year: '2005', genre: 'Rock', videoId: 'k4V3Mo61fJM' },
+          { name: 'Hurt', artist: 'Johnny Cash', year: '2002', genre: 'Country', videoId: '8AHCfZTRGiI' },
+          { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' }
+        ]
+      },
+      'sad+studying': {
+        genres: ['Classical', 'Piano', 'Ambient'],
+        songs: [
+          { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' },
+          { name: 'Moonlight Sonata', artist: 'Beethoven', year: '1801', genre: 'Classical', videoId: '4Tr0otuiQuU' },
+          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' }
+        ]
+      },
+      'calm+meditating': {
+        genres: ['Ambient', 'Classical', 'Nature'],
         songs: [
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
-          { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' }
+          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
+          { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', year: '1978', genre: 'Classical', videoId: 'AhkK2kM5ZwA' }
+        ]
+      },
+      'calm+sleeping': {
+        genres: ['Ambient', 'Nature', 'Piano'],
+        songs: [
+          { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
+          { name: 'Gymnopédie No.1', artist: 'Erik Satie', year: '1888', genre: 'Classical', videoId: 'S-Xm7s9eGxU' }
         ]
       }
     };
@@ -767,6 +835,15 @@
               <div>
                 <h4>Can't Hold Us <span class="youtube-badge">YouTube</span></h4>
                 <p>Macklemore · 2011 · Hip-hop</p>
+              </div>
+            </div>
+          </div>
+          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=9E6b3swbnWg', '_blank')">
+            <div class="song-item-header">
+              <i class="fab fa-youtube" style="color: #ff0000;"></i>
+              <div>
+                <h4>Nocturne Op.9 No.2 <span class="youtube-badge">YouTube</span></h4>
+                <p>Chopin · 1832 · Classical</p>
               </div>
             </div>
           </div>
@@ -853,6 +930,24 @@
         era: 'classic',
         mood: 'surprised',
         videoId: 'fJ9rUzIMcZQ'
+      },
+      { 
+        name: 'Billie Jean', 
+        artist: 'Michael Jackson · 1982 · Pop',
+        artistShort: 'Michael Jackson',
+        genre: 'Pop',
+        era: 'classic',
+        mood: 'happy',
+        videoId: 'Zi_XLOBDo_Y'
+      },
+      { 
+        name: 'Shape of You', 
+        artist: 'Ed Sheeran · 2017 · Pop',
+        artistShort: 'Ed Sheeran',
+        genre: 'Pop',
+        era: 'modern',
+        mood: 'happy',
+        videoId: 'JGwWNGJdvx8'
       }
     ];
 
@@ -874,7 +969,7 @@
       trackDisplay.textContent = track.name;
       artistDisplay.textContent = track.artist;
       youtubePlayer.src = `https://www.youtube.com/embed/${track.videoId}?autoplay=0`;
-      feedbackDiv.innerHTML = `⚡ Track ${trackIndex + 1} of 8. Watch the video and rate the song.`;
+      feedbackDiv.innerHTML = `⚡ Track ${trackIndex + 1} of 10. Watch the video and rate the song.`;
     }
 
     function clearRatings() {
@@ -904,11 +999,18 @@
 
     function showResults() {
       const likedTracks = userRatings.filter(r => r && r.liked === 'yes');
+      const dislikedTracks = userRatings.filter(r => r && r.liked === 'no');
+      const neutralTracks = userRatings.filter(r => r && r.liked === 'neutral');
+      
       const genreCount = {};
+      const eraCount = {};
+      const moodCount = {};
       
       userRatings.forEach(r => {
         if (r && r.liked === 'yes') {
           genreCount[r.genre] = (genreCount[r.genre] || 0) + 1;
+          eraCount[r.era] = (eraCount[r.era] || 0) + 1;
+          moodCount[r.mood] = (moodCount[r.mood] || 0) + 1;
         }
       });
       
@@ -916,10 +1018,31 @@
         ? Object.keys(genreCount).reduce((a, b) => genreCount[a] > genreCount[b] ? a : b)
         : 'Pop';
       
+      const favoriteEra = Object.keys(eraCount).length > 0
+        ? Object.keys(eraCount).reduce((a, b) => eraCount[a] > eraCount[b] ? a : b)
+        : 'modern';
+      
+      const favoriteMood = Object.keys(moodCount).length > 0
+        ? Object.keys(moodCount).reduce((a, b) => moodCount[a] > moodCount[b] ? a : b)
+        : 'happy';
+      
+      const eraText = favoriteEra === 'classic' ? 'Classic (before 2010)' : 'Modern (2010-present)';
+      
+      let avgMoodRating = 0;
+      userRatings.forEach(r => {
+        if (r) avgMoodRating += r.moodRating;
+      });
+      avgMoodRating = (avgMoodRating / userRatings.length).toFixed(1);
+      
       resultsList.innerHTML = `
-        <li><i class="fas fa-heart"></i> You liked ${likedTracks.length} out of 8 songs</li>
-        <li><i class="fas fa-star"></i> Your favorite genre: ${favoriteGenre}</li>
-        <li><i class="fas fa-lightbulb"></i> Try exploring more ${favoriteGenre} music!</li>
+        <li><i class="fas fa-heart" style="color: #ff6b6b;"></i> <strong>Songs you liked:</strong> ${likedTracks.length} out of 10</li>
+        <li><i class="fas fa-thumbs-down" style="color: #6b6b6b;"></i> <strong>Songs you didn't like:</strong> ${dislikedTracks.length}</li>
+        <li><i class="fas fa-meh"></i> <strong>Neutral songs:</strong> ${neutralTracks.length}</li>
+        <li><i class="fas fa-star" style="color: #ffd700;"></i> <strong>Your favorite genre:</strong> ${favoriteGenre}</li>
+        <li><i class="fas fa-clock"></i> <strong>You prefer:</strong> ${eraText}</li>
+        <li><i class="fas fa-smile"></i> <strong>Your mood in music:</strong> ${favoriteMood} songs</li>
+        <li><i class="fas fa-chart-line"></i> <strong>Average mood rating:</strong> ${avgMoodRating}/5</li>
+        <li><i class="fas fa-lightbulb" style="color: #7aa5c2;"></i> <strong>Recommendation:</strong> Based on your taste, try exploring more ${favoriteGenre} and ${favoriteMood} music!</li>
       `;
       resultsDiv.style.display = 'block';
     }
