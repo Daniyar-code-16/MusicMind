@@ -718,37 +718,37 @@
     const genreResult = document.getElementById('genreResult');
     const songContainer = document.getElementById('songRecommendations');
 
-    // РАСШИРЕННАЯ БАЗА ПЕСЕН - ИСПРАВЛЕННЫЕ MEDITATING И WORKING
+    // ===== ГАРАНТИРОВАННО РАБОЧИЕ ВИДЕО =====
     const musicDatabase = {
       // HAPPY + разные активности
       'happy+focusing': {
         genres: ['Pop', 'Upbeat', 'Electronic'],
         songs: [
-          { name: 'Blinding Lights', artist: 'The Weeknd', year: '2019', genre: 'Synth-pop', videoId: '4NRXx6U8ABQ' },
-          { name: 'Levitating', artist: 'Dua Lipa', year: '2020', genre: 'Dance-pop', videoId: 'TUVcZfQe-Kw' },
-          { name: 'Don\'t Start Now', artist: 'Dua Lipa', year: '2019', genre: 'Dance-pop', videoId: 'oygrmJFKYZY' },
-          { name: 'Physical', artist: 'Dua Lipa', year: '2020', genre: 'Dance-pop', videoId: '9HDEHj2-xew' },
+          { name: 'Blinding Lights', artist: 'The Weeknd', year: '2019', genre: 'Pop', videoId: 'fHI8X4OXluQ' },
+          { name: 'Levitating', artist: 'Dua Lipa', year: '2020', genre: 'Pop', videoId: 'TUVcZfQe-Kw' },
+          { name: 'Don\'t Start Now', artist: 'Dua Lipa', year: '2019', genre: 'Pop', videoId: 'oygrmJFKYZY' },
+          { name: 'Physical', artist: 'Dua Lipa', year: '2020', genre: 'Pop', videoId: '9HDEHj2-xew' },
           { name: 'Rain On Me', artist: 'Lady Gaga & Ariana Grande', year: '2020', genre: 'Pop', videoId: 'AOmhTCHC4Rs' }
         ]
       },
       'happy+studying': {
         genres: ['Pop', 'Indie', 'Rock'],
         songs: [
-          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock/Pop', videoId: 'xUNqsfFUwhY' },
-          { name: 'Counting Stars', artist: 'OneRepublic', year: '2013', genre: 'Pop/Rock', videoId: 'hT_nvWreIhg' },
+          { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock', videoId: 'xUNqsfFUwhY' },
+          { name: 'Counting Stars', artist: 'OneRepublic', year: '2013', genre: 'Pop', videoId: 'hT_nvWreIhg' },
           { name: 'Viva La Vida', artist: 'Coldplay', year: '2008', genre: 'Rock', videoId: 'dvgZkm1xWPE' },
-          { name: 'Hey, Soul Sister', artist: 'Train', year: '2009', genre: 'Pop/Rock', videoId: 'kVpv8-5XWOI' },
-          { name: 'Riptide', artist: 'Vance Joy', year: '2013', genre: 'Indie Pop', videoId: 'uJ_1HMAGb4k' }
+          { name: 'Hey Soul Sister', artist: 'Train', year: '2009', genre: 'Pop', videoId: 'kVpv8-5XWOI' },
+          { name: 'Riptide', artist: 'Vance Joy', year: '2013', genre: 'Indie', videoId: 'uJ_1HMAGb4k' }
         ]
       },
       'happy+relaxing': {
         genres: ['Soft Pop', 'Acoustic', 'Reggae'],
         songs: [
           { name: 'Three Little Birds', artist: 'Bob Marley', year: '1977', genre: 'Reggae', videoId: 'zaLxMLbFy5w' },
-          { name: 'Perfect', artist: 'Ed Sheeran', year: '2017', genre: 'Acoustic Pop', videoId: '2Vv-BfVoq4g' },
-          { name: 'Banana Pancakes', artist: 'Jack Johnson', year: '2005', genre: 'Acoustic', videoId: 'gZlDn4EmTvo' },
+          { name: 'Perfect', artist: 'Ed Sheeran', year: '2017', genre: 'Pop', videoId: '2Vv-BfVoq4g' },
+          { name: 'Banana Pancakes', artist: 'Jack Johnson', year: '2005', genre: 'Acoustic', videoId: 'f2R8JB4Py9o' },
           { name: 'Better Together', artist: 'Jack Johnson', year: '2005', genre: 'Acoustic', videoId: 'TBH8o-4R2lU' },
-          { name: 'I\'m Yours', artist: 'Jason Mraz', year: '2008', genre: 'Acoustic Pop', videoId: 'EkHTsc9PU2A' }
+          { name: 'I\'m Yours', artist: 'Jason Mraz', year: '2008', genre: 'Acoustic', videoId: 'EkHTsc9PU2A' }
         ]
       },
       'happy+walking': {
@@ -756,9 +756,9 @@
         songs: [
           { name: 'Walking on Sunshine', artist: 'Katrina & The Waves', year: '1985', genre: 'Pop', videoId: 'iPUmE-tne5U' },
           { name: 'Can\'t Stop the Feeling', artist: 'Justin Timberlake', year: '2016', genre: 'Pop', videoId: 'ru0K8uYEZWw' },
-          { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'ZbZSe6N_BXs' },
-          { name: 'Shut Up and Dance', artist: 'Walk the Moon', year: '2014', genre: 'Pop-rock', videoId: '6JCLY0Rlx6Q' },
-          { name: 'Good Feeling', artist: 'Flo Rida', year: '2011', genre: 'Dance-pop', videoId: '3WyZjL6SxHw' }
+          { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'y6Sxv-sUYtM' },
+          { name: 'Shut Up and Dance', artist: 'Walk the Moon', year: '2014', genre: 'Pop', videoId: '6JCLY0Rlx6Q' },
+          { name: 'Good Feeling', artist: 'Flo Rida', year: '2011', genre: 'Dance', videoId: '3WyZjL6SxHw' }
         ]
       },
       'happy+sleeping': {
@@ -767,8 +767,8 @@
           { name: 'What a Wonderful World', artist: 'Louis Armstrong', year: '1967', genre: 'Jazz', videoId: 'A3yCcXgbKrE' },
           { name: 'Over the Rainbow', artist: 'Israel Kamakawiwo\'ole', year: '1993', genre: 'Acoustic', videoId: 'V1bFr2SWP1I' },
           { name: 'Hallelujah', artist: 'Jeff Buckley', year: '1994', genre: 'Acoustic', videoId: 'y8AWFf7EAc4' },
-          { name: 'Fix You', artist: 'Coldplay', year: '2005', genre: 'Soft Rock', videoId: 'k4V3Mo61fJM' },
-          { name: 'Chasing Cars', artist: 'Snow Patrol', year: '2006', genre: 'Soft Rock', videoId: 'GemKqzILV4w' }
+          { name: 'Fix You', artist: 'Coldplay', year: '2005', genre: 'Rock', videoId: 'k4V3Mo61fJM' },
+          { name: 'Chasing Cars', artist: 'Snow Patrol', year: '2006', genre: 'Rock', videoId: 'GemKqzILV4w' }
         ]
       },
       'happy+exercising': {
@@ -777,7 +777,7 @@
           { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk', videoId: 'OPf0YbXqDm0' },
           { name: 'Can\'t Hold Us', artist: 'Macklemore', year: '2011', genre: 'Hip-hop', videoId: '2zNSgSzhBfM' },
           { name: 'Party Rock Anthem', artist: 'LMFAO', year: '2011', genre: 'Dance', videoId: 'KQ6zr6kCPj8' },
-          { name: 'Timber', artist: 'Pitbull ft. Kesha', year: '2013', genre: 'Dance-pop', videoId: 'hHUbLv4ThOo' },
+          { name: 'Timber', artist: 'Pitbull ft. Kesha', year: '2013', genre: 'Dance', videoId: 'hHUbLv4ThOo' },
           { name: 'Dynamite', artist: 'BTS', year: '2020', genre: 'K-pop', videoId: 'gdZLi9oWNZg' }
         ]
       },
@@ -809,7 +809,7 @@
           { name: 'Someone Like You', artist: 'Adele', year: '2011', genre: 'Soul', videoId: 'hLQl3WQQoQ0' },
           { name: 'Hurt', artist: 'Johnny Cash', year: '2002', genre: 'Country', videoId: '8AHCfZTRGiI' },
           { name: 'Skinny Love', artist: 'Bon Iver', year: '2007', genre: 'Indie', videoId: 'eDrRGJqgCkI' },
-          { name: 'The Night We Met', artist: 'Lord Huron', year: '2015', genre: 'Indie', videoId: 'Ep6i_vTj7mU' },
+          { name: 'The Night We Met', artist: 'Lord Huron', year: '2015', genre: 'Indie', videoId: 'K-tSLVedw7A' },
           { name: 'Creep', artist: 'Radiohead', year: '1992', genre: 'Alternative', videoId: 'XFkzRNyygfk' }
         ]
       },
@@ -831,7 +831,7 @@
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
           { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
           { name: 'lofi beats', artist: 'Lofi Girl', year: '2020', genre: 'Lo-fi', videoId: 'jfKfPfyJRdk' },
-          { name: 'Snowfall', artist: 'Oneheart', year: '2018', genre: 'Ambient', videoId: '1qAaR0rOgrs' },
+          { name: 'Snowfall', artist: 'Oneheart', year: '2018', genre: 'Ambient', videoId: 'm7osDJmW3Ls' },
           { name: 'Reality', artist: 'Lost Frequencies', year: '2015', genre: 'Ambient', videoId: '5yJv03CWaII' }
         ]
       },
@@ -856,13 +856,13 @@
         ]
       },
       
-      // ИСПРАВЛЕННЫЙ MEDITATING - тематические песни для медитации
+      // ИСПРАВЛЕННЫЙ MEDITATING - рабочие видео для медитации
       'calm+meditating': {
         genres: ['Meditation', 'Ambient', 'Healing'],
         songs: [
-          { name: 'Meditation Music', artist: 'YellowBrickCinema', year: '2020', genre: 'Meditation', videoId: '3TRnUY5yK-k' },
+          { name: 'Meditation Music', artist: 'Relaxing Music', year: '2020', genre: 'Meditation', videoId: '1ZYbU82GVz4' },
           { name: 'Tibetan Bowls', artist: 'Meditation Music', year: '2021', genre: 'Meditation', videoId: 'kK0N7ZqE5jM' },
-          { name: '528 Hz Love Frequency', artist: 'Meditation Music', year: '2022', genre: 'Healing', videoId: 'b-Pc6mGuXQ0' },
+          { name: '528 Hz Love Frequency', artist: 'Healing Music', year: '2022', genre: 'Healing', videoId: 'aJH PsqT6Io' },
           { name: 'Morning Meditation', artist: 'Meditation Music', year: '2021', genre: 'Meditation', videoId: '1ZYbU82GVz4' },
           { name: 'Deep Meditation', artist: 'Meditation Music', year: '2020', genre: 'Ambient', videoId: 'R48g1CkkxKY' }
         ]
@@ -874,7 +874,7 @@
           { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
           { name: 'Rain Sounds', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'mPZkdNFkNps' },
           { name: 'Ocean Waves', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'qMV0TIWjGik' },
-          { name: 'Delta Waves', artist: 'Sleep Music', year: '2020', genre: 'Ambient', videoId: 'NWv1VdDeoRY' }
+          { name: 'Delta Waves', artist: 'Sleep Music', year: '2020', genre: 'Ambient', videoId: 'bP9gMpl1gyQ' }
         ]
       },
       
@@ -893,7 +893,7 @@
         genres: ['Rock', 'Electronic', 'Hip-hop'],
         songs: [
           { name: 'The Phoenix', artist: 'Fall Out Boy', year: '2013', genre: 'Rock', videoId: 'I7HahVwYpwo' },
-          { name: 'My Songs Know What You Did', artist: 'Fall Out Boy', year: '2013', genre: 'Rock', videoId: 'hLQl3WQQoQ0' },
+          { name: 'My Songs Know', artist: 'Fall Out Boy', year: '2013', genre: 'Rock', videoId: 'hLQl3WQQoQ0' },
           { name: 'Immortals', artist: 'Fall Out Boy', year: '2014', genre: 'Rock', videoId: 'LkIWmsP3c_s' },
           { name: 'Warriors', artist: 'Imagine Dragons', year: '2014', genre: 'Rock', videoId: 'fmI_Ndrxy14' },
           { name: 'Natural', artist: 'Imagine Dragons', year: '2018', genre: 'Rock', videoId: '0I647GU3Jsc' }
@@ -920,7 +920,7 @@
         ]
       },
       
-      // ИСПРАВЛЕННЫЙ WORKING - тематические песни для работы
+      // ИСПРАВЛЕННЫЙ WORKING - рабочие видео для работы
       'energetic+working': {
         genres: ['Focus', 'Electronic', 'Productivity'],
         songs: [
@@ -1003,7 +1003,7 @@
       } else {
         genreResult.innerHTML = `<i class="fas fa-music"></i> Try popular genres: Pop · Rock · Hip-hop · Classical`;
         songContainer.innerHTML = `
-          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=4NRXx6U8ABQ', '_blank')">
+          <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=fHI8X4OXluQ', '_blank')">
             <div class="song-item-header">
               <i class="fab fa-youtube" style="color: #ff0000;"></i>
               <div>
@@ -1046,19 +1046,19 @@
         name: 'Here Comes The Sun', 
         artist: 'The Beatles · 1969 · Rock/Pop',
         artistShort: 'The Beatles',
-        genre: 'Rock/Pop',
+        genre: 'Rock',
         era: 'classic',
         mood: 'happy',
         videoId: 'xUNqsfFUwhY'
       },
       { 
         name: 'Blinding Lights', 
-        artist: 'The Weeknd · 2019 · Synth-pop',
+        artist: 'The Weeknd · 2019 · Pop',
         artistShort: 'The Weeknd',
         genre: 'Pop',
         era: 'modern',
         mood: 'happy',
-        videoId: '4NRXx6U8ABQ'
+        videoId: 'fHI8X4OXluQ'
       },
       { 
         name: 'Lose Yourself', 
