@@ -718,7 +718,7 @@
     const genreResult = document.getElementById('genreResult');
     const songContainer = document.getElementById('songRecommendations');
 
-    // РАСШИРЕННАЯ БАЗА ПЕСЕН - ПО 5 НА КАЖДУЮ КОМБИНАЦИЮ
+    // РАСШИРЕННАЯ БАЗА ПЕСЕН - ИСПРАВЛЕННЫЕ MEDITATING И WORKING
     const musicDatabase = {
       // HAPPY + разные активности
       'happy+focusing': {
@@ -855,14 +855,16 @@
           { name: 'Autumn Leaves', artist: 'Bill Evans', year: '1960', genre: 'Jazz', videoId: 'z8N6eIuRzY4' }
         ]
       },
+      
+      // ИСПРАВЛЕННЫЙ MEDITATING - тематические песни для медитации
       'calm+meditating': {
-        genres: ['Ambient', 'Nature', 'Classical'],
+        genres: ['Meditation', 'Ambient', 'Healing'],
         songs: [
-          { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
-          { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', year: '1978', genre: 'Classical', videoId: 'AhkK2kM5ZwA' },
-          { name: 'Ocean Waves', artist: 'Nature Sounds', year: '2015', genre: 'Nature', videoId: 'qMV0TIWjGik' },
-          { name: 'Tibetan Bowls', artist: 'Meditation Music', year: '2020', genre: 'Meditation', videoId: 'kK0N7ZqE5jM' },
-          { name: 'Rain Forest', artist: 'Nature Sounds', year: '2020', genre: 'Nature', videoId: 'oHhMIAyXe9Y' }
+          { name: 'Meditation Music', artist: 'YellowBrickCinema', year: '2020', genre: 'Meditation', videoId: '3TRnUY5yK-k' },
+          { name: 'Tibetan Bowls', artist: 'Meditation Music', year: '2021', genre: 'Meditation', videoId: 'kK0N7ZqE5jM' },
+          { name: '528 Hz Love Frequency', artist: 'Meditation Music', year: '2022', genre: 'Healing', videoId: 'b-Pc6mGuXQ0' },
+          { name: 'Morning Meditation', artist: 'Meditation Music', year: '2021', genre: 'Meditation', videoId: '1ZYbU82GVz4' },
+          { name: 'Deep Meditation', artist: 'Meditation Music', year: '2020', genre: 'Ambient', videoId: 'R48g1CkkxKY' }
         ]
       },
       'calm+sleeping': {
@@ -917,14 +919,16 @@
           { name: 'Back in Black', artist: 'AC/DC', year: '1980', genre: 'Rock', videoId: 'pAgnJDJN4VA' }
         ]
       },
+      
+      // ИСПРАВЛЕННЫЙ WORKING - тематические песни для работы
       'energetic+working': {
-        genres: ['Electronic', 'Rock', 'Pop'],
+        genres: ['Focus', 'Electronic', 'Productivity'],
         songs: [
-          { name: 'Power', artist: 'Kanye West', year: '2010', genre: 'Hip-hop', videoId: 'L53gjP-TtGE' },
-          { name: 'Harder Better Faster', artist: 'Daft Punk', year: '2001', genre: 'Electronic', videoId: 'gAjR4_CbPpQ' },
-          { name: 'Around the World', artist: 'Daft Punk', year: '1997', genre: 'Electronic', videoId: 'K0HSD_i2DvA' },
-          { name: 'One More Time', artist: 'Daft Punk', year: '2000', genre: 'Electronic', videoId: 'FGBhQbmPwH8' },
-          { name: 'Get Lucky', artist: 'Daft Punk', year: '2013', genre: 'Funk', videoId: '5NV6Rdv1a3I' }
+          { name: 'Focus Music for Work', artist: 'Focus Music', year: '2022', genre: 'Productivity', videoId: '5qap5aO4i9A' },
+          { name: 'Deep Focus', artist: 'Music for Work', year: '2021', genre: 'Focus', videoId: 'xLZ8zEAYTjU' },
+          { name: 'Productivity Music', artist: 'Work Music', year: '2022', genre: 'Productivity', videoId: 'tDexr46Yw9k' },
+          { name: 'Office Music', artist: 'Work Playlist', year: '2021', genre: 'Focus', videoId: 'rUxyKA-grqA' },
+          { name: 'Concentration Music', artist: 'Study Music', year: '2022', genre: 'Focus', videoId: 'Nl6RWyWc1SQ' }
         ]
       },
       
