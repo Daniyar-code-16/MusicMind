@@ -156,21 +156,6 @@
       background: #0f1a30;
     }
 
-    .btn-small {
-      background: #e0e9f5;
-      color: #1e2b3c;
-      padding: 0.6rem 1.5rem;
-      border-radius: 40px;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .btn-small:hover {
-      background: #cbdaea;
-    }
-
     .section {
       background: white;
       border-radius: 32px;
@@ -461,15 +446,6 @@
       text-align: center;
     }
 
-    .bibliography a {
-      color: #5f4b8b;
-      text-decoration: none;
-    }
-
-    .bibliography a:hover {
-      text-decoration: underline;
-    }
-
     @media (max-width: 700px) {
       .navbar {
         flex-direction: column;
@@ -499,7 +475,7 @@
   <section id="home" style="scroll-margin-top: 80px;">
     <h1>The Influence of Music on Human Life</h1>
     <p class="subtitle">Explore how music affects your mood, focus, and daily life.</p>
-    <a href="#card-section" class="btn"><i class="fas fa-play"></i> Start Exploring</a>
+    <a href="#card-section" class="btn" id="startExploringBtn"><i class="fas fa-play"></i> Start Exploring</a>
   </section>
 
   <div id="card-section" class="card-grid">
@@ -525,7 +501,7 @@
     </div>
   </div>
 
-  <!-- ABOUT MUSIC SECTION - УБРАНА БИБЛИОГРАФИЯ -->
+  <!-- ABOUT MUSIC SECTION -->
   <section id="about" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-star" style="color:#7aa5c2; margin-right:10px;"></i> Power of Music</h2>
     <p style="font-size:1.2rem; margin-bottom:2rem;">Learn how music affects your brain, emotions, and daily life based on scientific research.</p>
@@ -558,7 +534,7 @@
     </div>
   </section>
 
-  <!-- MUSIC FINDER SECTION - РАСШИРЕННАЯ БАЗА -->
+  <!-- MUSIC FINDER SECTION -->
   <section id="finder" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-magic" style="color:#7aa5c2; margin-right:10px;"></i> Mood & Activity Matcher</h2>
     <p class="subtitle" style="margin-top:-0.5rem;">Choose your mood and activity – get personalized YouTube music recommendations.</p>
@@ -600,7 +576,7 @@
     </div>
   </section>
 
-  <!-- MUSIC EXPERIMENT SECTION - 10 РАБОЧИХ ВИДЕО -->
+  <!-- MUSIC EXPERIMENT SECTION -->
   <section id="experiment" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-flask" style="color:#7aa5c2;"></i> Music Experiment</h2>
     <p>Watch 10 different music videos and rate them. After finishing, you'll get a personalized analysis of your musical taste.</p>
@@ -650,7 +626,7 @@
     </div>
   </section>
 
-  <!-- MUSIC & CULTURE SECTION - РАСШИРЕННАЯ ИНФОРМАЦИЯ -->
+  <!-- MUSIC & CULTURE SECTION -->
   <section id="culture" style="scroll-margin-top: 80px;" class="section">
     <h2><i class="fas fa-globe" style="color:#5f4b8b;"></i> Music in Culture and Life</h2>
     <p class="subtitle">Discover how music connects people across cultures and enhances everyday experiences.</p>
@@ -719,6 +695,22 @@
       });
     });
 
+    // ========== ИСПРАВЛЕНИЕ START EXPLORING BUTTON ==========
+    document.getElementById('startExploringBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetElement = document.getElementById('card-section');
+      if (targetElement) {
+        const offset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+
     // ========== MUSIC FINDER ==========
     const moodSelect = document.getElementById('moodSelect');
     const activitySelect = document.getElementById('activitySelect');
@@ -726,27 +718,27 @@
     const genreResult = document.getElementById('genreResult');
     const songContainer = document.getElementById('songRecommendations');
 
-    // РАСШИРЕННАЯ БАЗА ПЕСЕН ДЛЯ MUSIC FINDER
+    // РАСШИРЕННАЯ БАЗА ПЕСЕН - ПО 5 НА КАЖДУЮ КОМБИНАЦИЮ
     const musicDatabase = {
       // HAPPY + разные активности
       'happy+focusing': {
-        genres: ['Pop', 'Electronic', 'Upbeat'],
+        genres: ['Pop', 'Upbeat', 'Electronic'],
         songs: [
           { name: 'Blinding Lights', artist: 'The Weeknd', year: '2019', genre: 'Synth-pop', videoId: '4NRXx6U8ABQ' },
-          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk/Pop', videoId: 'OPf0YbXqDm0' },
-          { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'ZbZSe6N_BXs' },
-          { name: 'Shape of You', artist: 'Ed Sheeran', year: '2017', genre: 'Pop', videoId: 'JGwWNGJdvx8' },
-          { name: 'Levitating', artist: 'Dua Lipa', year: '2020', genre: 'Dance-pop', videoId: 'TUVcZfQe-Kw' }
+          { name: 'Levitating', artist: 'Dua Lipa', year: '2020', genre: 'Dance-pop', videoId: 'TUVcZfQe-Kw' },
+          { name: 'Don\'t Start Now', artist: 'Dua Lipa', year: '2019', genre: 'Dance-pop', videoId: 'oygrmJFKYZY' },
+          { name: 'Physical', artist: 'Dua Lipa', year: '2020', genre: 'Dance-pop', videoId: '9HDEHj2-xew' },
+          { name: 'Rain On Me', artist: 'Lady Gaga & Ariana Grande', year: '2020', genre: 'Pop', videoId: 'AOmhTCHC4Rs' }
         ]
       },
       'happy+studying': {
-        genres: ['Pop', 'Rock', 'Indie'],
+        genres: ['Pop', 'Indie', 'Rock'],
         songs: [
           { name: 'Here Comes The Sun', artist: 'The Beatles', year: '1969', genre: 'Rock/Pop', videoId: 'xUNqsfFUwhY' },
           { name: 'Counting Stars', artist: 'OneRepublic', year: '2013', genre: 'Pop/Rock', videoId: 'hT_nvWreIhg' },
           { name: 'Viva La Vida', artist: 'Coldplay', year: '2008', genre: 'Rock', videoId: 'dvgZkm1xWPE' },
-          { name: 'Don\'t Stop Me Now', artist: 'Queen', year: '1978', genre: 'Rock', videoId: 'HgzGwKwLmgM' },
-          { name: 'Shake It Off', artist: 'Taylor Swift', year: '2014', genre: 'Pop', videoId: 'nfWlot6h_JM' }
+          { name: 'Hey, Soul Sister', artist: 'Train', year: '2009', genre: 'Pop/Rock', videoId: 'kVpv8-5XWOI' },
+          { name: 'Riptide', artist: 'Vance Joy', year: '2013', genre: 'Indie Pop', videoId: 'uJ_1HMAGb4k' }
         ]
       },
       'happy+relaxing': {
@@ -754,9 +746,9 @@
         songs: [
           { name: 'Three Little Birds', artist: 'Bob Marley', year: '1977', genre: 'Reggae', videoId: 'zaLxMLbFy5w' },
           { name: 'Perfect', artist: 'Ed Sheeran', year: '2017', genre: 'Acoustic Pop', videoId: '2Vv-BfVoq4g' },
-          { name: 'Stand By Me', artist: 'Ben E. King', year: '1961', genre: 'Soul', videoId: 'hwZNL7QVJjE' },
-          { name: 'What a Wonderful World', artist: 'Louis Armstrong', year: '1967', genre: 'Jazz', videoId: 'A3yCcXgbKrE' },
-          { name: 'Banana Pancakes', artist: 'Jack Johnson', year: '2005', genre: 'Acoustic', videoId: 'gZlDn4EmTvo' }
+          { name: 'Banana Pancakes', artist: 'Jack Johnson', year: '2005', genre: 'Acoustic', videoId: 'gZlDn4EmTvo' },
+          { name: 'Better Together', artist: 'Jack Johnson', year: '2005', genre: 'Acoustic', videoId: 'TBH8o-4R2lU' },
+          { name: 'I\'m Yours', artist: 'Jason Mraz', year: '2008', genre: 'Acoustic Pop', videoId: 'EkHTsc9PU2A' }
         ]
       },
       'happy+walking': {
@@ -764,47 +756,29 @@
         songs: [
           { name: 'Walking on Sunshine', artist: 'Katrina & The Waves', year: '1985', genre: 'Pop', videoId: 'iPUmE-tne5U' },
           { name: 'Can\'t Stop the Feeling', artist: 'Justin Timberlake', year: '2016', genre: 'Pop', videoId: 'ru0K8uYEZWw' },
-          { name: 'I Wanna Dance with Somebody', artist: 'Whitney Houston', year: '1987', genre: 'Dance-pop', videoId: 'eH3giaIzONA' },
-          { name: 'Dancing Queen', artist: 'ABBA', year: '1976', genre: 'Pop', videoId: 'xFrGuyw1V8s' },
-          { name: 'Shut Up and Dance', artist: 'Walk the Moon', year: '2014', genre: 'Pop-rock', videoId: '6JCLY0Rlx6Q' }
+          { name: 'Happy', artist: 'Pharrell Williams', year: '2013', genre: 'Pop', videoId: 'ZbZSe6N_BXs' },
+          { name: 'Shut Up and Dance', artist: 'Walk the Moon', year: '2014', genre: 'Pop-rock', videoId: '6JCLY0Rlx6Q' },
+          { name: 'Good Feeling', artist: 'Flo Rida', year: '2011', genre: 'Dance-pop', videoId: '3WyZjL6SxHw' }
         ]
       },
-      
-      // ENERGETIC + разные активности
-      'energetic+focusing': {
-        genres: ['Electronic', 'Rock', 'Hip-hop'],
+      'happy+sleeping': {
+        genres: ['Soft Pop', 'Acoustic', 'Lullabies'],
         songs: [
-          { name: 'Stronger', artist: 'Kanye West', year: '2007', genre: 'Hip-hop', videoId: 'PsO6ZnUZI0g' },
-          { name: 'Lose Yourself', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: '_Yhyp-_hX2s' },
-          { name: 'Believer', artist: 'Imagine Dragons', year: '2017', genre: 'Rock', videoId: '7wtfhZwyrcc' }
+          { name: 'What a Wonderful World', artist: 'Louis Armstrong', year: '1967', genre: 'Jazz', videoId: 'A3yCcXgbKrE' },
+          { name: 'Over the Rainbow', artist: 'Israel Kamakawiwo\'ole', year: '1993', genre: 'Acoustic', videoId: 'V1bFr2SWP1I' },
+          { name: 'Hallelujah', artist: 'Jeff Buckley', year: '1994', genre: 'Acoustic', videoId: 'y8AWFf7EAc4' },
+          { name: 'Fix You', artist: 'Coldplay', year: '2005', genre: 'Soft Rock', videoId: 'k4V3Mo61fJM' },
+          { name: 'Chasing Cars', artist: 'Snow Patrol', year: '2006', genre: 'Soft Rock', videoId: 'GemKqzILV4w' }
         ]
       },
-      'energetic+studying': {
-        genres: ['Electronic', 'Rock', 'Hip-hop'],
+      'happy+exercising': {
+        genres: ['Dance-pop', 'Electronic', 'Upbeat'],
         songs: [
-          { name: 'The Phoenix', artist: 'Fall Out Boy', year: '2013', genre: 'Rock', videoId: 'I7HahVwYpwo' },
-          { name: 'Radioactive', artist: 'Imagine Dragons', year: '2012', genre: 'Rock', videoId: 'ktvTqknDobU' },
-          { name: 'Centuries', artist: 'Fall Out Boy', year: '2014', genre: 'Rock', videoId: 'LBr7kECsjcM' }
-        ]
-      },
-      'energetic+exercising': {
-        genres: ['Hip-hop', 'Rock', 'Electronic'],
-        songs: [
+          { name: 'Uptown Funk', artist: 'Bruno Mars', year: '2014', genre: 'Funk', videoId: 'OPf0YbXqDm0' },
           { name: 'Can\'t Hold Us', artist: 'Macklemore', year: '2011', genre: 'Hip-hop', videoId: '2zNSgSzhBfM' },
-          { name: 'Eye of the Tiger', artist: 'Survivor', year: '1982', genre: 'Rock', videoId: 'btPJPFnesV4' },
-          { name: 'Power', artist: 'Kanye West', year: '2010', genre: 'Hip-hop', videoId: 'L53gjP-TtGE' },
-          { name: 'Thunderstruck', artist: 'AC/DC', year: '1990', genre: 'Rock', videoId: 'v2AC41dglnM' },
-          { name: 'Till I Collapse', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: 'gOMhN-hfMtY' },
-          { name: 'Remember the Name', artist: 'Fort Minor', year: '2005', genre: 'Hip-hop', videoId: 'VDvr08sCPOc' }
-        ]
-      },
-      'energetic+walking': {
-        genres: ['Rock', 'Pop', 'Dance'],
-        songs: [
-          { name: 'Billie Jean', artist: 'Michael Jackson', year: '1982', genre: 'Pop', videoId: 'Zi_XLOBDo_Y' },
-          { name: 'Roar', artist: 'Katy Perry', year: '2013', genre: 'Pop', videoId: 'CevxZvSJLk8' },
-          { name: 'Firework', artist: 'Katy Perry', year: '2010', genre: 'Pop', videoId: 'QGJuMBdaqIw' },
-          { name: 'Moves Like Jagger', artist: 'Maroon 5', year: '2011', genre: 'Pop', videoId: 'iEPTlhBmwRg' }
+          { name: 'Party Rock Anthem', artist: 'LMFAO', year: '2011', genre: 'Dance', videoId: 'KQ6zr6kCPj8' },
+          { name: 'Timber', artist: 'Pitbull ft. Kesha', year: '2013', genre: 'Dance-pop', videoId: 'hHUbLv4ThOo' },
+          { name: 'Dynamite', artist: 'BTS', year: '2020', genre: 'K-pop', videoId: 'gdZLi9oWNZg' }
         ]
       },
       
@@ -814,6 +788,8 @@
         songs: [
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
           { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
+          { name: 'Gymnopédie No.1', artist: 'Erik Satie', year: '1888', genre: 'Classical', videoId: 'S-Xm7s9eGxU' },
+          { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', year: '1978', genre: 'Classical', videoId: 'AhkK2kM5ZwA' },
           { name: 'Experience', artist: 'Ludovico Einaudi', year: '2013', genre: 'Classical', videoId: 'dVrqYrh8vX8' }
         ]
       },
@@ -822,25 +798,29 @@
         songs: [
           { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' },
           { name: 'Moonlight Sonata', artist: 'Beethoven', year: '1801', genre: 'Classical', videoId: '4Tr0otuiQuU' },
-          { name: 'Gymnopédie No.1', artist: 'Erik Satie', year: '1888', genre: 'Classical', videoId: 'S-Xm7s9eGxU' },
-          { name: 'River Flows in You', artist: 'Yiruma', year: '2001', genre: 'Piano', videoId: '7maJOI3QMu0' }
+          { name: 'River Flows in You', artist: 'Yiruma', year: '2001', genre: 'Piano', videoId: '7maJOI3QMu0' },
+          { name: 'Comptine d\'un autre été', artist: 'Yann Tiersen', year: '2001', genre: 'Piano', videoId: '7lDJnIQ9gFA' },
+          { name: 'Kiss the Rain', artist: 'Yiruma', year: '2003', genre: 'Piano', videoId: 'aHzIisAO3yk' }
         ]
       },
       'sad+relaxing': {
         genres: ['R&B', 'Soul', 'Ambient'],
         songs: [
           { name: 'Someone Like You', artist: 'Adele', year: '2011', genre: 'Soul', videoId: 'hLQl3WQQoQ0' },
-          { name: 'Fix You', artist: 'Coldplay', year: '2005', genre: 'Rock', videoId: 'k4V3Mo61fJM' },
           { name: 'Hurt', artist: 'Johnny Cash', year: '2002', genre: 'Country', videoId: '8AHCfZTRGiI' },
-          { name: 'Skinny Love', artist: 'Bon Iver', year: '2007', genre: 'Indie', videoId: 'eDrRGJqgCkI' }
+          { name: 'Skinny Love', artist: 'Bon Iver', year: '2007', genre: 'Indie', videoId: 'eDrRGJqgCkI' },
+          { name: 'The Night We Met', artist: 'Lord Huron', year: '2015', genre: 'Indie', videoId: 'Ep6i_vTj7mU' },
+          { name: 'Creep', artist: 'Radiohead', year: '1992', genre: 'Alternative', videoId: 'XFkzRNyygfk' }
         ]
       },
       'sad+sleeping': {
         genres: ['Ambient', 'Nature', 'Piano'],
         songs: [
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
-          { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', year: '1978', genre: 'Classical', videoId: 'AhkK2kM5ZwA' },
-          { name: 'Comptine d\'un autre été', artist: 'Yann Tiersen', year: '2001', genre: 'Piano', videoId: '7lDJnIQ9gFA' }
+          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
+          { name: 'Rain Sounds', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'mPZkdNFkNps' },
+          { name: 'Ocean Waves', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'qMV0TIWjGik' },
+          { name: 'Forest Sounds', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'oHhMIAyXe9Y' }
         ]
       },
       
@@ -850,7 +830,9 @@
         songs: [
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
           { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
-          { name: 'lofi beats', artist: 'Lofi Girl', year: '2020', genre: 'Lo-fi', videoId: 'jfKfPfyJRdk' }
+          { name: 'lofi beats', artist: 'Lofi Girl', year: '2020', genre: 'Lo-fi', videoId: 'jfKfPfyJRdk' },
+          { name: 'Snowfall', artist: 'Oneheart', year: '2018', genre: 'Ambient', videoId: '1qAaR0rOgrs' },
+          { name: 'Reality', artist: 'Lost Frequencies', year: '2015', genre: 'Ambient', videoId: '5yJv03CWaII' }
         ]
       },
       'calm+studying': {
@@ -858,15 +840,19 @@
         songs: [
           { name: 'Nocturne Op.9 No.2', artist: 'Chopin', year: '1832', genre: 'Classical', videoId: '9E6b3swbnWg' },
           { name: 'lofi hip hop radio', artist: 'Lofi Girl', year: '2020', genre: 'Lo-fi', videoId: 'jfKfPfyJRdk' },
-          { name: 'Gymnopédie No.1', artist: 'Erik Satie', year: '1888', genre: 'Classical', videoId: 'S-Xm7s9eGxU' }
+          { name: 'Gymnopédie No.1', artist: 'Erik Satie', year: '1888', genre: 'Classical', videoId: 'S-Xm7s9eGxU' },
+          { name: 'River Flows in You', artist: 'Yiruma', year: '2001', genre: 'Piano', videoId: '7maJOI3QMu0' },
+          { name: 'Comptine d\'un autre été', artist: 'Yann Tiersen', year: '2001', genre: 'Piano', videoId: '7lDJnIQ9gFA' }
         ]
       },
       'calm+relaxing': {
         genres: ['Ambient', 'Classical', 'Jazz'],
         songs: [
           { name: 'Take Five', artist: 'Dave Brubeck', year: '1959', genre: 'Jazz', videoId: 'vmDDOFXSgAs' },
-          { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
-          { name: 'So What', artist: 'Miles Davis', year: '1959', genre: 'Jazz', videoId: 'zqNTltOGh5c' }
+          { name: 'So What', artist: 'Miles Davis', year: '1959', genre: 'Jazz', videoId: 'zqNTltOGh5c' },
+          { name: 'Blue in Green', artist: 'Miles Davis', year: '1959', genre: 'Jazz', videoId: '-bFZ4n7az6Y' },
+          { name: 'Freddie Freeloader', artist: 'Miles Davis', year: '1959', genre: 'Jazz', videoId: 'GtXyIDzJqEQ' },
+          { name: 'Autumn Leaves', artist: 'Bill Evans', year: '1960', genre: 'Jazz', videoId: 'z8N6eIuRzY4' }
         ]
       },
       'calm+meditating': {
@@ -874,7 +860,9 @@
         songs: [
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
           { name: 'Spiegel im Spiegel', artist: 'Arvo Pärt', year: '1978', genre: 'Classical', videoId: 'AhkK2kM5ZwA' },
-          { name: 'Ocean Waves', artist: 'Nature Sounds', year: '2015', genre: 'Nature', videoId: 'qMV0TIWjGik' }
+          { name: 'Ocean Waves', artist: 'Nature Sounds', year: '2015', genre: 'Nature', videoId: 'qMV0TIWjGik' },
+          { name: 'Tibetan Bowls', artist: 'Meditation Music', year: '2020', genre: 'Meditation', videoId: 'kK0N7ZqE5jM' },
+          { name: 'Rain Forest', artist: 'Nature Sounds', year: '2020', genre: 'Nature', videoId: 'oHhMIAyXe9Y' }
         ]
       },
       'calm+sleeping': {
@@ -882,26 +870,103 @@
         songs: [
           { name: 'Weightless', artist: 'Marconi Union', year: '2011', genre: 'Ambient', videoId: 'UfcAVejslrU' },
           { name: 'Clair de Lune', artist: 'Debussy', year: '1905', genre: 'Classical', videoId: 'CvFH_6DNnYg' },
-          { name: 'Rain Sounds', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'mPZkdNFkNps' }
+          { name: 'Rain Sounds', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'mPZkdNFkNps' },
+          { name: 'Ocean Waves', artist: 'Nature', year: '2020', genre: 'Nature', videoId: 'qMV0TIWjGik' },
+          { name: 'Delta Waves', artist: 'Sleep Music', year: '2020', genre: 'Ambient', videoId: 'NWv1VdDeoRY' }
+        ]
+      },
+      
+      // ENERGETIC + разные активности
+      'energetic+focusing': {
+        genres: ['Electronic', 'Rock', 'Hip-hop'],
+        songs: [
+          { name: 'Stronger', artist: 'Kanye West', year: '2007', genre: 'Hip-hop', videoId: 'PsO6ZnUZI0g' },
+          { name: 'Lose Yourself', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: '_Yhyp-_hX2s' },
+          { name: 'Believer', artist: 'Imagine Dragons', year: '2017', genre: 'Rock', videoId: '7wtfhZwyrcc' },
+          { name: 'Radioactive', artist: 'Imagine Dragons', year: '2012', genre: 'Rock', videoId: 'ktvTqknDobU' },
+          { name: 'Centuries', artist: 'Fall Out Boy', year: '2014', genre: 'Rock', videoId: 'LBr7kECsjcM' }
+        ]
+      },
+      'energetic+studying': {
+        genres: ['Rock', 'Electronic', 'Hip-hop'],
+        songs: [
+          { name: 'The Phoenix', artist: 'Fall Out Boy', year: '2013', genre: 'Rock', videoId: 'I7HahVwYpwo' },
+          { name: 'My Songs Know What You Did', artist: 'Fall Out Boy', year: '2013', genre: 'Rock', videoId: 'hLQl3WQQoQ0' },
+          { name: 'Immortals', artist: 'Fall Out Boy', year: '2014', genre: 'Rock', videoId: 'LkIWmsP3c_s' },
+          { name: 'Warriors', artist: 'Imagine Dragons', year: '2014', genre: 'Rock', videoId: 'fmI_Ndrxy14' },
+          { name: 'Natural', artist: 'Imagine Dragons', year: '2018', genre: 'Rock', videoId: '0I647GU3Jsc' }
+        ]
+      },
+      'energetic+walking': {
+        genres: ['Pop', 'Rock', 'Dance'],
+        songs: [
+          { name: 'Billie Jean', artist: 'Michael Jackson', year: '1982', genre: 'Pop', videoId: 'Zi_XLOBDo_Y' },
+          { name: 'Beat It', artist: 'Michael Jackson', year: '1982', genre: 'Rock', videoId: 'oRdxUFDoQe0' },
+          { name: 'Smooth Criminal', artist: 'Michael Jackson', year: '1987', genre: 'Pop', videoId: 'h_D3VFfhvs4' },
+          { name: 'Bad', artist: 'Michael Jackson', year: '1987', genre: 'Pop', videoId: 'dsUXAEzaC3Q' },
+          { name: 'Black or White', artist: 'Michael Jackson', year: '1991', genre: 'Pop', videoId: 'F2AitTPI5U0' }
+        ]
+      },
+      'energetic+exercising': {
+        genres: ['Hip-hop', 'Rock', 'Electronic'],
+        songs: [
+          { name: 'Eye of the Tiger', artist: 'Survivor', year: '1982', genre: 'Rock', videoId: 'btPJPFnesV4' },
+          { name: 'Till I Collapse', artist: 'Eminem', year: '2002', genre: 'Hip-hop', videoId: 'gOMhN-hfMtY' },
+          { name: 'Remember the Name', artist: 'Fort Minor', year: '2005', genre: 'Hip-hop', videoId: 'VDvr08sCPOc' },
+          { name: 'Thunderstruck', artist: 'AC/DC', year: '1990', genre: 'Rock', videoId: 'v2AC41dglnM' },
+          { name: 'Back in Black', artist: 'AC/DC', year: '1980', genre: 'Rock', videoId: 'pAgnJDJN4VA' }
+        ]
+      },
+      'energetic+working': {
+        genres: ['Electronic', 'Rock', 'Pop'],
+        songs: [
+          { name: 'Power', artist: 'Kanye West', year: '2010', genre: 'Hip-hop', videoId: 'L53gjP-TtGE' },
+          { name: 'Harder Better Faster', artist: 'Daft Punk', year: '2001', genre: 'Electronic', videoId: 'gAjR4_CbPpQ' },
+          { name: 'Around the World', artist: 'Daft Punk', year: '1997', genre: 'Electronic', videoId: 'K0HSD_i2DvA' },
+          { name: 'One More Time', artist: 'Daft Punk', year: '2000', genre: 'Electronic', videoId: 'FGBhQbmPwH8' },
+          { name: 'Get Lucky', artist: 'Daft Punk', year: '2013', genre: 'Funk', videoId: '5NV6Rdv1a3I' }
         ]
       },
       
       // ANGRY + разные активности
+      'angry+focusing': {
+        genres: ['Rock', 'Metal', 'Hard Rock'],
+        songs: [
+          { name: 'Numb', artist: 'Linkin Park', year: '2003', genre: 'Rock', videoId: 'kXYiU_JCYtU' },
+          { name: 'In the End', artist: 'Linkin Park', year: '2000', genre: 'Rock', videoId: 'eVTXPUF4Oz4' },
+          { name: 'Crawling', artist: 'Linkin Park', year: '2000', genre: 'Rock', videoId: 'Gd9OhYroLN0' },
+          { name: 'Breaking the Habit', artist: 'Linkin Park', year: '2003', genre: 'Rock', videoId: 'v2H4l9Rpoyw' },
+          { name: 'What I\'ve Done', artist: 'Linkin Park', year: '2007', genre: 'Rock', videoId: '8sgycukafqQ' }
+        ]
+      },
+      'angry+studying': {
+        genres: ['Rock', 'Metal', 'Hard Rock'],
+        songs: [
+          { name: 'Faint', artist: 'Linkin Park', year: '2003', genre: 'Rock', videoId: 'LYU-8IFcDPw' },
+          { name: 'Bleed It Out', artist: 'Linkin Park', year: '2007', genre: 'Rock', videoId: '3dOHt1b6tuA' },
+          { name: 'Papercut', artist: 'Linkin Park', year: '2000', genre: 'Rock', videoId: 'vjVkXlxsO8Q' },
+          { name: 'One Step Closer', artist: 'Linkin Park', year: '2000', genre: 'Rock', videoId: 'KM28K0n2omg' },
+          { name: 'Somewhere I Belong', artist: 'Linkin Park', year: '2003', genre: 'Rock', videoId: 'zA52uNzx7Y4' }
+        ]
+      },
       'angry+exercising': {
-        genres: ['Rock', 'Metal', 'Hard Hip-hop'],
+        genres: ['Rock', 'Metal', 'Hard Rock'],
         songs: [
           { name: 'Killing in the Name', artist: 'Rage Against The Machine', year: '1992', genre: 'Rock', videoId: 'bWXazVhlyxQ' },
           { name: 'Break Stuff', artist: 'Limp Bizkit', year: '1999', genre: 'Nu-metal', videoId: '5vP-7r1cFRE' },
           { name: 'Chop Suey!', artist: 'System of a Down', year: '2001', genre: 'Metal', videoId: 'CSvFpBOe8eY' },
-          { name: 'In the End', artist: 'Linkin Park', year: '2000', genre: 'Rock', videoId: 'eVTXPUF4Oz4' }
+          { name: 'Toxicity', artist: 'System of a Down', year: '2001', genre: 'Metal', videoId: 'iywaBOMvYLI' },
+          { name: 'B.Y.O.B.', artist: 'System of a Down', year: '2005', genre: 'Metal', videoId: 'zUzd9KyIDrM' }
         ]
       },
-      'angry+focusing': {
-        genres: ['Rock', 'Metal', 'Hard Hip-hop'],
+      'angry+walking': {
+        genres: ['Rock', 'Hard Rock', 'Alternative'],
         songs: [
-          { name: 'Numb', artist: 'Linkin Park', year: '2003', genre: 'Rock', videoId: 'kXYiU_JCYtU' },
-          { name: 'Faint', artist: 'Linkin Park', year: '2003', genre: 'Rock', videoId: 'LYU-8IFcDPw' },
-          { name: 'Bleed It Out', artist: 'Linkin Park', year: '2007', genre: 'Rock', videoId: '3dOHt1b6tuA' }
+          { name: 'Seven Nation Army', artist: 'The White Stripes', year: '2003', genre: 'Rock', videoId: '0J2QdDbelmY' },
+          { name: 'Smells Like Teen Spirit', artist: 'Nirvana', year: '1991', genre: 'Grunge', videoId: 'hTWKbfoikeg' },
+          { name: 'Come As You Are', artist: 'Nirvana', year: '1991', genre: 'Grunge', videoId: 'vabnZ9-ex7o' },
+          { name: 'Lithium', artist: 'Nirvana', year: '1991', genre: 'Grunge', videoId: 'pkcJEvMcnEg' },
+          { name: 'Heart-Shaped Box', artist: 'Nirvana', year: '1993', genre: 'Grunge', videoId: 'n6P0SitRwy8' }
         ]
       }
     };
